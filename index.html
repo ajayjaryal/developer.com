@@ -91,7 +91,7 @@ nav.scrolled {
   align-items: center;
   justify-content: space-between;
 }
-.nav-logo { height: 30px; }
+.nav-logo { height: 40px; }
 .nav-links { display: flex; gap: 2rem; list-style: none; }
 .nav-links a {
   font-family: 'Jost', sans-serif;
@@ -261,171 +261,415 @@ section { padding: 7rem 0; }
   align-items: center;
   position: relative;
   overflow: hidden;
-  padding: 6rem 0 4rem;
+  padding: 7rem 0 5rem;
 }
+
+/* Layered hero background */
 .hero-bg {
   position: absolute; inset: 0;
   background:
-    radial-gradient(ellipse 65% 65% at 65% 50%, rgba(64,80,255,.2) 0%, transparent 65%),
-    radial-gradient(ellipse 40% 50% at 15% 75%, rgba(157,191,255,.1) 0%, transparent 60%);
+    radial-gradient(ellipse 80% 70% at 70% 40%, rgba(64,80,255,.18) 0%, transparent 60%),
+    radial-gradient(ellipse 50% 60% at 10% 80%, rgba(157,191,255,.08) 0%, transparent 55%),
+    radial-gradient(ellipse 30% 40% at 85% 85%, rgba(64,80,255,.1) 0%, transparent 55%);
 }
 .hero-grid-overlay {
   position: absolute; inset: 0;
   background-image:
-    linear-gradient(rgba(64,80,255,.05) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(64,80,255,.05) 1px, transparent 1px);
-  background-size: 56px 56px;
-  mask-image: radial-gradient(ellipse at center, black 25%, transparent 78%);
+    linear-gradient(rgba(64,80,255,.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(64,80,255,.04) 1px, transparent 1px);
+  background-size: 48px 48px;
+  mask-image: radial-gradient(ellipse 90% 80% at 60% 40%, black 20%, transparent 72%);
 }
+/* Decorative floating orbs */
+.hero-orb {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  filter: blur(70px);
+}
+.hero-orb-1 {
+  width: 380px; height: 380px;
+  background: rgba(64,80,255,.12);
+  top: -80px; right: 10%;
+  animation: orbFloat 8s ease-in-out infinite;
+}
+.hero-orb-2 {
+  width: 220px; height: 220px;
+  background: rgba(157,191,255,.09);
+  bottom: 10%; left: 5%;
+  animation: orbFloat 11s ease-in-out infinite reverse;
+}
+@keyframes orbFloat {
+  0%,100% { transform: translateY(0) scale(1); }
+  50% { transform: translateY(-28px) scale(1.04); }
+}
+
+/* Diagonal accent line */
+.hero-accent-line {
+  position: absolute;
+  top: 0; right: 28%;
+  width: 1px; height: 100%;
+  background: linear-gradient(to bottom, transparent 0%, rgba(64,80,255,.18) 30%, rgba(157,191,255,.25) 60%, transparent 100%);
+  pointer-events: none;
+}
+
 .hero-inner {
   display: grid;
-  grid-template-columns: 1fr auto;
-  gap: 4rem;
+  grid-template-columns: 1fr 440px;
+  gap: 5rem;
   align-items: center;
   position: relative;
   z-index: 2;
   width: 100%;
 }
+
+/* ── HERO LEFT ── */
+.hero-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  opacity: 0;
+  animation: fadeUp .6s .15s forwards;
+}
 .hero-tag {
   display: inline-flex;
   align-items: center;
   gap: .55rem;
-  font-size: .78rem;
-  font-weight: 600;
-  letter-spacing: .14em;
+  font-size: .72rem;
+  font-weight: 700;
+  letter-spacing: .18em;
   text-transform: uppercase;
   color: var(--blue-light);
-  border: 1px solid rgba(157,191,255,.28);
-  padding: .38rem 1rem;
-  margin-bottom: 1.8rem;
-  opacity: 0;
-  animation: fadeUp .7s .2s forwards;
+  border: 1px solid rgba(157,191,255,.22);
+  background: rgba(64,80,255,.06);
+  padding: .4rem 1rem;
+  backdrop-filter: blur(8px);
 }
 .hero-tag .dot-pulse {
-  width: 6px; height: 6px;
+  width: 7px; height: 7px;
   background: #22c55e;
   border-radius: 50%;
-  animation: blink 2s infinite;
+  box-shadow: 0 0 0 0 rgba(34,197,94,.5);
+  animation: ripple 2s ease-in-out infinite;
+}
+@keyframes ripple {
+  0%  { box-shadow: 0 0 0 0 rgba(34,197,94,.55); }
+  70% { box-shadow: 0 0 0 7px rgba(34,197,94,0); }
+  100%{ box-shadow: 0 0 0 0 rgba(34,197,94,0); }
 }
 @keyframes blink { 0%,100%{opacity:1} 50%{opacity:.3} }
 
+/* Name with a stacked dramatic layout */
 .hero-name {
-  font-size: 60px;
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(3.4rem, 6.5vw, 5.4rem);
   font-weight: 800;
-  line-height: .93;
-  letter-spacing: -.03em;
+  line-height: .92;
+  letter-spacing: -.04em;
+  margin-bottom: 1.2rem;
   opacity: 0;
-  animation: fadeUp .85s .35s forwards;
+  animation: fadeUp .85s .3s forwards;
 }
-.hero-name .ln1 { display: block; color: #fff; }
+.hero-name .ln1 {
+  display: block;
+  color: #fff;
+}
 .hero-name .ln2 {
   display: block;
-  background: linear-gradient(135deg, var(--blue) 20%, var(--blue-light) 100%);
+  background: linear-gradient(135deg, var(--blue) 10%, #7b8fff 50%, var(--blue-light) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
+/* Animated role typewriter */
+.hero-role-line {
+  display: flex;
+  align-items: center;
+  gap: .6rem;
+  margin-bottom: 1.6rem;
+  opacity: 0;
+  animation: fadeUp .7s .45s forwards;
+}
+.hero-role-prefix {
+  font-size: .88rem;
+  font-weight: 400;
+  color: var(--gray);
+  letter-spacing: .06em;
+}
+.hero-role-typed {
+  font-size: .92rem;
+  font-weight: 700;
+  color: var(--blue-light);
+  letter-spacing: .04em;
+  border-right: 2px solid var(--blue);
+  padding-right: 3px;
+  white-space: nowrap;
+  overflow: hidden;
+  animation: typeCursor .7s step-end infinite;
+}
+@keyframes typeCursor { 0%,100%{border-color:var(--blue)} 50%{border-color:transparent} }
+
 .hero-desc {
-  margin-top: 1.6rem;
-  font-size: 1.05rem;
+  font-size: 1rem;
   font-weight: 300;
   color: var(--gray-light);
-  line-height: 1.8;
-  max-width: 480px;
+  line-height: 1.85;
+  max-width: 460px;
+  margin-bottom: 0;
   opacity: 0;
-  animation: fadeUp .85s .5s forwards;
+  animation: fadeUp .85s .55s forwards;
 }
 .hero-desc strong { color: #fff; font-weight: 600; }
 
-.hero-actions {
-  margin-top: 2.5rem;
+/* Quick stats row */
+.hero-stats-row {
   display: flex;
-  gap: 1.1rem;
+  gap: 0;
+  margin: 2rem 0 2.2rem;
+  opacity: 0;
+  animation: fadeUp .7s .68s forwards;
+}
+.hstat {
+  flex: 1;
+  padding: 1rem 1.2rem;
+  border: 1px solid var(--border);
+  background: rgba(255,255,255,.02);
+  text-align: center;
+  position: relative;
+  transition: background .3s, border-color .3s;
+}
+.hstat:not(:last-child) { border-right: none; }
+.hstat:first-child { border-radius: 8px 0 0 8px; }
+.hstat:last-child  { border-radius: 0 8px 8px 0; }
+.hstat:hover { background: rgba(64,80,255,.07); border-color: var(--border-blue); }
+.hstat-num {
+  font-family: 'Syne', sans-serif;
+  font-size: 1.6rem;
+  font-weight: 800;
+  background: linear-gradient(135deg, var(--blue), var(--blue-light));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  line-height: 1;
+}
+.hstat-lbl {
+  font-size: .6rem;
+  font-weight: 600;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--gray);
+  margin-top: .3rem;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 1rem;
   flex-wrap: wrap;
   opacity: 0;
-  animation: fadeUp .85s .65s forwards;
+  animation: fadeUp .85s .8s forwards;
 }
 
 .hero-socials {
   display: flex;
-  gap: 1rem;
-  margin-top: 2.8rem;
+  gap: .7rem;
+  margin-top: 2rem;
   opacity: 0;
-  animation: fadeUp .85s .78s forwards;
+  animation: fadeUp .85s .92s forwards;
 }
 .social-btn {
-  width: 40px; height: 40px;
+  width: 38px; height: 38px;
   border: 1px solid var(--border);
   background: transparent;
   color: var(--gray-light);
-  font-size: .9rem;
+  font-size: .85rem;
   display: flex; align-items: center; justify-content: center;
   text-decoration: none;
-  transition: border-color .25s, color .25s, background .25s, transform .25s;
+  transition: border-color .25s, color .25s, background .25s, transform .25s, box-shadow .25s;
+  border-radius: 8px;
 }
 .social-btn:hover {
   border-color: var(--blue);
   color: var(--blue-light);
   background: rgba(64,80,255,.12);
   transform: translateY(-3px);
+  box-shadow: 0 6px 18px rgba(64,80,255,.22);
 }
 
+/* ── HERO RIGHT ── */
 .hero-card-wrap {
   opacity: 0;
-  animation: fadeLeft .9s .8s forwards;
+  animation: fadeLeft .9s .7s forwards;
   flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
 }
-.hero-card {
-  width: 320px;
-  background: var(--dark-2);
+
+/* Profile card */
+.hero-profile-card {
+  background: linear-gradient(145deg, var(--dark-2), rgba(11,16,32,.9));
   border: 1px solid var(--border-blue);
-  border-radius: 14px;
-  padding: 1.8rem;
+  border-radius: 16px;
+  padding: 2rem;
   position: relative;
-  box-shadow: 0 0 60px rgba(64,80,255,.12);
+  overflow: hidden;
+  box-shadow: 0 0 80px rgba(64,80,255,.1), 0 20px 60px rgba(0,0,0,.4);
 }
-.hero-card::before {
+.hero-profile-card::before {
   content: '';
   position: absolute;
-  top: -1px; left: -1px; right: -1px; height: 3px;
-  background: linear-gradient(90deg, var(--blue), var(--blue-light));
+  top: 0; left: 0; right: 0; height: 2px;
+  background: linear-gradient(90deg, var(--blue), var(--blue-light), var(--blue));
+  background-size: 200%;
+  animation: shimmer 3s linear infinite;
 }
-.card-top {
-  display: flex; align-items: center; gap: .9rem;
-  margin-bottom: 1.4rem;
-  padding-bottom: 1.4rem;
-  border-bottom: 1px solid var(--border);
+@keyframes shimmer { 0%{background-position:0%} 100%{background-position:200%} }
+
+.hero-profile-card::after {
+  content: '';
+  position: absolute;
+  bottom: -40px; right: -40px;
+  width: 160px; height: 160px;
+  background: radial-gradient(circle, rgba(64,80,255,.12) 0%, transparent 70%);
+  pointer-events: none;
 }
-.avatar {
-  width: 52px; height: 52px;
+
+/* Image area with clip */
+.hero-img-wrap {
+  position: relative;
+  width: 100%;
+  height: 280px;
+  border-radius: 10px;
+  overflow: hidden;
+  margin-bottom: 1.5rem;
+  background: linear-gradient(135deg, #0d1630, #1a2460);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.hero-photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.hero-img-glow {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(5,8,20,.6) 0%, transparent 50%);
+  pointer-events: none;
+}
+/* Fallback initials if photo fails */
+.hero-img-fallback {
+  font-family: 'Syne', sans-serif;
+  font-size: 4rem;
+  font-weight: 800;
   background: linear-gradient(135deg, var(--blue), var(--blue-light));
-  display: flex; align-items: center; justify-content: center;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  opacity: .4;
+}
+
+/* Profile info in card */
+.profile-info-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.2rem;
+}
+.profile-name-block .pname {
   font-family: 'Syne', sans-serif;
-  font-size: 1.3rem; font-weight: 800;
-  flex-shrink: 0;
+  font-size: 1.05rem;
+  font-weight: 700;
 }
-.card-name { font-family: 'Syne', sans-serif; font-size: .95rem; font-weight: 700; }
-.card-role { font-size: .75rem; color: var(--blue-light); margin-top: .18rem; }
-.stat-row {
-  display: grid; grid-template-columns: repeat(3,1fr); gap: .8rem;
-  margin-bottom: 1.4rem;
+.profile-name-block .prole {
+  font-size: .72rem;
+  color: var(--blue-light);
+  margin-top: .15rem;
+  letter-spacing: .04em;
 }
-.stat { text-align: center; }
-.stat-val {
+.profile-status {
+  display: inline-flex;
+  align-items: center;
+  gap: .4rem;
+  font-size: .62rem;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: #22c55e;
+  border: 1px solid rgba(34,197,94,.25);
+  background: rgba(34,197,94,.06);
+  padding: .3rem .7rem;
+  border-radius: 20px;
+}
+.profile-status-dot {
+  width: 5px; height: 5px;
+  background: #22c55e;
+  border-radius: 50%;
+  animation: blink 2s infinite;
+}
+
+/* Mini stat pills row in card */
+.profile-stats {
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  gap: .7rem;
+  padding-top: 1.2rem;
+  border-top: 1px solid var(--border);
+}
+.pstat {
+  text-align: center;
+  padding: .6rem .4rem;
+  background: rgba(64,80,255,.04);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  transition: background .25s, border-color .25s;
+}
+.pstat:hover { background: rgba(64,80,255,.09); border-color: var(--border-blue); }
+.pstat-val {
   font-family: 'Syne', sans-serif;
-  font-size: 1.4rem; font-weight: 800;
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: #fff;
 }
-.stat-val span { color: var(--blue); }
-.stat-lbl { font-size: .65rem; color: var(--gray); text-transform: uppercase; letter-spacing: .06em; margin-top: .1rem; }
-.card-pills { display: flex; flex-wrap: wrap; gap: .4rem; }
-.cpill {
-  font-size: .68rem; font-weight: 500;
-  padding: .22rem .6rem;
+.pstat-val sup { color: var(--blue); font-size: .6em; }
+.pstat-lbl { font-size: .58rem; color: var(--gray); letter-spacing: .08em; text-transform: uppercase; margin-top: .2rem; }
+
+/* Tech pills card */
+.hero-tech-card {
+  background: rgba(11,16,32,.7);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1.1rem 1.3rem;
+  backdrop-filter: blur(10px);
+}
+.hero-tech-label {
+  font-size: .62rem;
+  font-weight: 700;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: var(--gray);
+  margin-bottom: .8rem;
+}
+.hero-tech-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .4rem;
+}
+.tpill {
+  font-size: .68rem;
+  font-weight: 600;
+  padding: .25rem .7rem;
   border: 1px solid var(--border-blue);
   color: var(--blue-light);
   background: rgba(64,80,255,.07);
+  border-radius: 20px;
+  transition: background .2s, border-color .2s;
 }
+.tpill:hover { background: rgba(64,80,255,.15); border-color: var(--blue-light); }
 
 .hero-scroll-hint {
   position: absolute;
@@ -433,13 +677,26 @@ section { padding: 7rem 0; }
   display: flex; align-items: center; justify-content: center;
   gap: .8rem;
   opacity: 0;
-  animation: fadeUp .7s 1.1s forwards;
+  animation: fadeUp .7s 1.2s forwards;
 }
-.scroll-line { width: 50px; height: 1px; background: linear-gradient(90deg, transparent, var(--blue)); }
-.scroll-text { font-size: .7rem; font-weight: 600; letter-spacing: .15em; text-transform: uppercase; color: var(--gray); }
+.scroll-line { width: 44px; height: 1px; background: linear-gradient(90deg, transparent, var(--blue)); }
+.scroll-text { font-size: .65rem; font-weight: 600; letter-spacing: .18em; text-transform: uppercase; color: var(--gray); }
+
+@media(max-width: 1100px) {
+  .hero-inner { grid-template-columns: 1fr 380px; gap: 3.5rem; }
+}
+@media(max-width: 900px) {
+  .hero-card-wrap { display: none; }
+}
+@media(max-width: 768px) {
+  .hero-img-wrap { display: flex; }
+  .hero-stats-row { gap: 0; }
+  .hstat { padding: .8rem .7rem; }
+  .hstat-num { font-size: 1.3rem; }
+}
 
 @keyframes fadeUp { from{opacity:0;transform:translateY(28px)} to{opacity:1;transform:translateY(0)} }
-@keyframes fadeLeft { from{opacity:0;transform:translateX(28px)} to{opacity:1;transform:translateX(0)} }
+@keyframes fadeLeft { from{opacity:0;transform:translateX(32px)} to{opacity:1;transform:translateX(0)} }
 
 /* ── MARQUEE ── */
 .marquee-strip {
@@ -575,18 +832,31 @@ section { padding: 7rem 0; }
 #experience { background: var(--dark-2); }
 .exp-list { margin-top: 3.2rem; }
 .exp-item {
-  display: grid;
-  grid-template-columns: 200px 1fr;
-  gap: 2.5rem;
-  padding: 2.2rem 0;
-  border-bottom: 1px solid var(--border);
-  transition: background .3s;
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 2.5rem;
+    padding: 30px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid var(--border);
+    transition: background .3s;
+    position: sticky;
+    top: 120px;
+    height: fit-content;
+    background: #0e1129;
 }
 .exp-item:last-child { border-bottom: none; }
-.exp-item:hover { background: rgba(64,80,255,.03); }
-.exp-period { font-size: .74rem; font-weight: 600; letter-spacing: .09em; text-transform: uppercase; color: var(--blue-light); }
-.exp-duration { font-size: .7rem; color: var(--gray); margin-top: .25rem; }
-.exp-company { font-size: .78rem; font-weight: 600; color: var(--gray-light); margin-top: .45rem; }
+.exp-duration {
+    font-size: 16px;
+    color: #ffffffb6;
+    margin-top: .25rem;
+    padding: 10px 0;
+}
+.exp-company {
+    font-size: 16px;
+    font-weight: 600;
+    color: #ffffff;
+    margin-top: .45rem;
+}
 .exp-role { font-family: 'Syne', sans-serif; font-size: 1.15rem; font-weight: 700; margin-bottom: .5rem; }
 .exp-badge {
   display: inline-flex; align-items: center; gap: .4rem;
@@ -597,13 +867,24 @@ section { padding: 7rem 0; }
   border: 1px solid var(--border-blue);
   margin-bottom: .9rem;
 }
-.exp-desc { font-size: .9rem; font-weight: 300; color: var(--gray-light); line-height: 1.8; }
+.exp-desc {
+    font-size: 16px;
+    font-weight: 300;
+    color: #ffffff;
+    line-height: 1.8;
+}
+.exp-period {
+    color: rgb(214 216 233 / 45%);
+}
 .exp-tags { display: flex; flex-wrap: wrap; gap: .45rem; margin-top: .9rem; }
 .etag {
-  font-size: .68rem; padding: .2rem .6rem;
-  border: 1px solid var(--border);
-  color: var(--gray);
-  transition: border-color .2s, color .2s;
+    font-size: 13px;
+    padding: 6px 12px;
+    border: 1px solid rgba(64,80,255,.45);
+    color: var(--gray);
+    transition: border-color .2s, color .2s;
+    background: rgb(64 80 255 / 6%);
+    border-radius: 5px;
 }
 .etag:hover { border-color: var(--blue-light); color: var(--blue-light); }
 
@@ -755,7 +1036,7 @@ section { padding: 7rem 0; }
   border-radius: 12px;
   overflow: hidden;
   transition: border-color .3s, transform .35s, box-shadow .35s;
-  flex: 0 0 520px;
+  flex: 0 0 620px;
   scroll-snap-align: start;
   display: flex;
   flex-direction: column;
@@ -767,7 +1048,7 @@ section { padding: 7rem 0; }
   box-shadow: 0 20px 44px rgba(64,80,255,.14);
 }
 .proj-thumb {
-  height: 200px;
+  height: 400px;
   background: var(--dark);
   position: relative;
   overflow: hidden;
@@ -986,8 +1267,8 @@ footer {
 .footer-inner {
   display: flex; justify-content: space-between; align-items: center;
 }
-.footer-logo { height: 22px; opacity: .65; }
-.footer-text { font-size: .74rem; color: var(--gray); }
+.footer-logo { height: 40px; opacity: .65; }
+.footer-text a{ font-size: 16px; color: var(--gray);    text-decoration: none; }
 
 /* ── REVEAL ── */
 .reveal { opacity: 0; transform: translateY(28px); transition: opacity .7s, transform .7s; }
@@ -997,7 +1278,7 @@ footer {
 .reveal-d3 { transition-delay: .3s; }
 
 /* ── RESPONSIVE ── */
-@media(max-width:1050px){
+@media(max-width:900px){
   .hero-card-wrap{display:none;}
   .about-grid{grid-template-columns:1fr;gap:3rem;}
 }
@@ -1192,24 +1473,39 @@ footer {
   <div class="container">
     <div class="nav-inner">
       <a href="#"><svg class="nav-logo" viewBox="0 0 498 132" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M37.0333 86.4266C41.3767 90.7707 48.4197 90.7707 52.7631 86.4266C57.1066 82.0846 57.1066 75.0402 52.7631 70.6982L19.0813 37.0157C14.7379 32.6722 7.69494 32.6715 3.3515 37.0157C-0.992651 41.3584 -0.991926 48.4021 3.35223 52.7462L23.2757 72.6215L37.0333 86.4266Z" fill="#9DBFFF"/>
-        <path d="M52.7628 3.31253C48.4187 -1.03162 41.3757 -1.0309 37.0323 3.31253L3.3512 36.9943C-0.902229 41.247 -1.16866 47.9026 2.90691 52.2633L3.07901 52.4469L3.30295 52.6709C23.2747 72.6189 12.5767 61.9208 26.9398 44.8654L52.7628 19.0416C57.1048 14.6989 57.1063 7.65597 52.7628 3.31253Z" fill="#4050FF"/>
-        <path d="M80.1016 44.8128C75.7567 40.4686 68.7145 40.4686 64.3703 44.8128C60.0276 49.1562 60.0276 56.1992 64.3703 60.5419L98.0521 94.2244C102.396 98.5679 109.44 98.5686 113.782 94.2244C118.127 89.881 118.125 82.838 113.782 78.4931L93.8577 58.6186L80.1016 44.8128Z" fill="#9DBFFF"/>
-        <path d="M64.3702 127.925C68.7144 132.268 75.7566 132.268 80.1015 127.925L113.782 94.2439C118.035 89.9912 118.302 83.3349 114.226 78.9742L93.8576 58.6172C104.556 69.3152 90.1932 86.3714 90.1932 86.3714L64.3709 112.195C60.0275 116.539 60.0275 123.582 64.3702 127.925Z" fill="#4050FF"/>
-        <path d="M51.6779 123.494C49.9023 129.171 43.8624 132.333 38.1854 130.557C32.5105 128.782 29.348 122.741 31.1222 117.065L65.9605 7.55776C67.7369 1.88149 73.7789 -1.28176 79.4545 0.493923C85.1293 2.26816 88.2918 8.31024 86.5176 13.9865L51.6779 123.494Z" fill="white"/>
-        <rect x="142" y="66" width="356" height="51" fill="#4050FF"/>
-        <path d="M188.046 93.077L191.174 83.9H195.797L188.828 100.943L183.63 91.237L178.455 100.943L171.486 83.9H176.086L179.26 93.077L183.63 83.095L188.046 93.077Z" fill="white"/>
-        <path d="M201.177 100V96.803H209.296V100H201.177ZM201.177 87.097V83.9H209.296V87.097H201.177ZM201.177 93.1V89.972H208.836V93.1H201.177ZM198.601 83.9H202.327V100H198.601V83.9Z" fill="white"/>
-        <path d="M143.938 48.998L156.307 14.5H168.579L181.146 48.998H169.614L162.517 25.6872H162.32L155.223 48.998H143.938ZM155.174 44.1682V36.1351H169.762V44.1682H155.174Z" fill="white"/>
-        <path d="M193.524 49.4415C192.177 49.4415 190.797 49.3101 189.384 49.0472C188.004 48.8173 186.493 48.4394 184.85 47.9137L182.879 47.2731L185.047 38.6979L188.201 39.0921C189.121 39.2235 189.975 39.3057 190.764 39.3385C191.552 39.3385 192.308 39.3385 193.031 39.3385C194.345 39.3385 195.364 39.0264 196.086 38.4022C196.809 37.7779 197.171 36.9565 197.171 35.938V14.5H208.161V35.9873C208.161 40.357 206.863 43.6918 204.267 45.9917C201.705 48.2916 198.123 49.4415 193.524 49.4415Z" fill="white"/>
-        <path d="M208.717 48.998L221.087 14.5H233.359L245.926 48.998H234.394L227.297 25.6872H227.1L220.003 48.998H208.717ZM219.954 44.1682V36.1351H234.542V44.1682H219.954Z" fill="white"/>
-        <path d="M255.403 48.998V39.0428L241.456 14.5H253.974L260.873 28.792H261.07L268.019 14.5H280.044L266.393 38.6486V48.998H255.403Z" fill="white"/>
-        <path d="M308.453 49.4415C307.106 49.4415 305.726 49.3101 304.313 49.0472C302.933 48.8173 301.422 48.4394 299.779 47.9137L297.808 47.2731L299.976 38.6979L303.13 39.0921C304.05 39.2235 304.904 39.3057 305.693 39.3385C306.481 39.3385 307.237 39.3385 307.96 39.3385C309.274 39.3385 310.293 39.0264 311.015 38.4022C311.738 37.7779 312.1 36.9565 312.1 35.938V14.5H323.09V35.9873C323.09 40.357 321.792 43.6918 319.196 45.9917C316.634 48.2916 313.052 49.4415 308.453 49.4415Z" fill="white"/>
-        <path d="M323.646 48.998L336.016 14.5H348.288L360.855 48.998H349.323L342.226 25.6872H342.029L334.932 48.998H323.646ZM334.883 44.1682V36.1351H349.471V44.1682H334.883Z" fill="white"/>
-        <path d="M364.312 48.998V14.5H382.547C385.143 14.5 387.393 14.9764 389.299 15.9292C391.204 16.8491 392.666 18.1634 393.685 19.8718C394.736 21.5803 395.262 23.6009 395.262 25.9336C395.262 28.2006 394.802 30.0734 393.882 31.5518C392.962 33.0303 391.73 34.1967 390.186 35.0509C388.642 35.9052 386.917 36.513 385.011 36.8744C383.138 37.2358 381.249 37.4165 379.344 37.4165H375.302V48.998H364.312ZM385.11 48.998L378.506 36.7265L388.855 34.9031L397.184 48.998H385.11ZM375.302 30.0734H380.083C381.594 30.0734 382.695 29.8105 383.385 29.2848C384.108 28.7263 384.469 27.8885 384.469 26.7714C384.469 25.6215 384.124 24.8001 383.434 24.3073C382.744 23.8144 381.627 23.568 380.083 23.568H375.302V30.0734Z" fill="white"/>
-        <path d="M409.412 48.998V39.0428L395.465 14.5H407.982L414.882 28.792H415.079L422.028 14.5H434.053L420.402 38.6486V48.998H409.412Z" fill="white"/>
-        <path d="M429.576 48.998L441.945 14.5H454.217L466.784 48.998H455.252L448.155 25.6872H447.958L440.861 48.998H429.576ZM440.812 44.1682V36.1351H455.4V44.1682H440.812Z" fill="white"/>
-        <path d="M470.242 48.998V14.5H481.232V39.3878H497.051V48.998H470.242Z" fill="white"/>
+        <path d="M37.0333 86.4256C41.3767 90.7697 48.4197 90.7697 52.7631 86.4256C57.1066 82.0836 57.1066 75.0392 52.7631 70.6972L19.0813 37.0147C14.7379 32.6712 7.69494 32.6705 3.3515 37.0147C-0.992651 41.3574 -0.991926 48.4011 3.35223 52.7452L23.2757 72.6205L37.0333 86.4256Z" fill="#9DBFFF"/>
+<path d="M52.7628 3.31253C48.4187 -1.03162 41.3757 -1.0309 37.0323 3.31253L3.3512 36.9943C-0.902229 41.247 -1.16866 47.9026 2.90691 52.2633L3.07901 52.4469L3.30295 52.6709C3.31951 52.6874 3.33391 52.7062 3.35047 52.7234C3.36775 52.7422 3.38792 52.7566 3.40664 52.7746L23.2747 72.6189C12.5767 61.9208 26.9398 44.8654 26.9398 44.8654H26.9369L52.7628 19.0416C57.1048 14.6989 57.1063 7.65597 52.7628 3.31253Z" fill="#4050FF"/>
+<path d="M80.0977 44.8148C75.7528 40.4706 68.7106 40.4706 64.3664 44.8148C60.0237 49.1582 60.0237 56.2012 64.3664 60.5439L98.0482 94.2264C102.392 98.5698 109.436 98.5705 113.778 94.2264C118.123 89.8829 118.121 82.84 113.778 78.4951L93.8538 58.6206L80.0977 44.8148Z" fill="#9DBFFF"/>
+<path d="M64.3663 127.927C68.7105 132.27 75.7527 132.27 80.0976 127.927L113.778 94.2458C118.031 89.9931 118.298 83.3368 114.222 78.9761L114.05 78.7918L113.825 78.5678C113.81 78.5506 113.795 78.5326 113.778 78.5153C113.761 78.4973 113.74 78.4822 113.722 78.4641L93.8537 58.6191C104.552 69.3172 90.1893 86.3734 90.1893 86.3734L90.1915 86.3719L64.367 112.197C60.0236 116.541 60.0236 123.584 64.3663 127.927Z" fill="#4050FF"/>
+<path d="M51.674 123.494C49.8984 129.171 43.8584 132.333 38.1814 130.557C32.5066 128.782 29.3441 122.741 31.1183 117.065L65.9565 7.55776C67.7329 1.88149 73.775 -1.28176 79.4506 0.493923C85.1254 2.26816 88.2879 8.31024 86.5137 13.9865L51.674 123.494Z" fill="white"/>
+<rect x="142" y="66" width="356" height="51" fill="#4050FF"/>
+<path d="M188.044 93.0767L191.172 83.8997H195.795L188.826 100.943L183.628 91.2367L178.453 100.943L171.484 83.8997H176.084L179.258 93.0767L183.628 83.0947L188.044 93.0767Z" fill="white"/>
+<path d="M201.175 99.9997V96.8027H209.294V99.9997H201.175ZM201.175 87.0967V83.8997H209.294V87.0967H201.175ZM201.175 93.0997V89.9717H208.834V93.0997H201.175ZM198.599 83.8997H202.325V99.9997H198.599V83.8997Z" fill="white"/>
+<path d="M216.356 91.9957V90.2937H218.955C219.399 90.2937 219.775 90.2247 220.082 90.0867C220.404 89.9487 220.649 89.7571 220.818 89.5117C220.986 89.2511 221.071 88.9367 221.071 88.5687C221.071 88.0167 220.887 87.6027 220.519 87.3267C220.151 87.0507 219.629 86.9127 218.955 86.9127H217.345V96.9867H219.323C219.829 96.9867 220.281 96.9254 220.68 96.8027C221.078 96.6647 221.393 96.4501 221.623 96.1587C221.868 95.8521 221.991 95.4381 221.991 94.9167C221.991 94.5794 221.922 94.2881 221.784 94.0427C221.646 93.7974 221.454 93.5981 221.209 93.4447C220.963 93.2914 220.68 93.1841 220.358 93.1227C220.051 93.0461 219.706 93.0077 219.323 93.0077H216.356V90.8917H219.76C220.542 90.8917 221.301 90.9761 222.037 91.1447C222.773 91.3134 223.44 91.5894 224.038 91.9727C224.636 92.3407 225.111 92.8161 225.464 93.3987C225.832 93.9661 226.016 94.6561 226.016 95.4687C226.016 96.5421 225.755 97.4084 225.234 98.0677C224.728 98.7271 224.007 99.2177 223.072 99.5397C222.136 99.8464 221.032 99.9997 219.76 99.9997H213.458V83.8997H219.369C220.488 83.8997 221.469 84.0531 222.313 84.3597C223.171 84.6511 223.846 85.1034 224.337 85.7167C224.843 86.3147 225.096 87.0737 225.096 87.9937C225.096 88.8371 224.843 89.5577 224.337 90.1557C223.846 90.7537 223.171 91.2137 222.313 91.5357C221.469 91.8424 220.488 91.9957 219.369 91.9957H216.356Z" fill="white"/>
+<path d="M241.054 91.4437C240.701 91.0604 240.348 90.6694 239.996 90.2707C239.658 89.8567 239.375 89.4274 239.145 88.9827C238.93 88.5381 238.823 88.0397 238.823 87.4877C238.823 86.8284 239.022 86.1921 239.421 85.5787C239.819 84.9654 240.387 84.4671 241.123 84.0837C241.874 83.7004 242.756 83.5087 243.768 83.5087C244.78 83.5087 245.631 83.7004 246.321 84.0837C247.011 84.4671 247.532 84.9577 247.885 85.5557C248.237 86.1384 248.414 86.7517 248.414 87.3957C248.414 87.9324 248.329 88.4001 248.161 88.7987C247.992 89.1821 247.739 89.5501 247.402 89.9027C247.064 90.2401 246.65 90.5851 246.16 90.9377C245.669 91.2751 245.102 91.6584 244.458 92.0877C244.059 92.3484 243.622 92.5861 243.147 92.8007C242.687 93.0001 242.257 93.2147 241.859 93.4447C241.46 93.6594 241.13 93.9201 240.87 94.2267C240.609 94.5181 240.479 94.9014 240.479 95.3767C240.479 95.7447 240.571 96.0821 240.755 96.3887C240.954 96.6801 241.23 96.9177 241.583 97.1017C241.951 97.2857 242.395 97.3777 242.917 97.3777C243.576 97.3777 244.22 97.2397 244.849 96.9637C245.493 96.6877 246.114 96.3121 246.712 95.8367C247.31 95.3614 247.869 94.8094 248.391 94.1807C248.927 93.5521 249.433 92.8774 249.909 92.1567L252.232 93.9507C251.726 94.6714 251.143 95.4074 250.484 96.1587C249.824 96.9101 249.088 97.6001 248.276 98.2287C247.463 98.8421 246.566 99.3404 245.585 99.7237C244.619 100.107 243.576 100.299 242.457 100.299C241.429 100.299 240.486 100.115 239.628 99.7467C238.784 99.3787 238.11 98.8497 237.604 98.1597C237.098 97.4697 236.845 96.6494 236.845 95.6987C236.845 94.9627 236.99 94.3341 237.282 93.8127C237.573 93.2761 237.949 92.8237 238.409 92.4557C238.869 92.0724 239.359 91.7581 239.881 91.5127C240.417 91.2521 240.923 91.0297 241.399 90.8457C241.889 90.6617 242.296 90.4931 242.618 90.3397C243.476 89.9257 244.128 89.4887 244.573 89.0287C245.033 88.5687 245.263 88.1317 245.263 87.7177C245.263 87.4724 245.201 87.2424 245.079 87.0277C244.956 86.8131 244.78 86.6367 244.55 86.4987C244.335 86.3607 244.067 86.2917 243.745 86.2917C243.223 86.2917 242.832 86.4374 242.572 86.7287C242.311 87.0201 242.181 87.3497 242.181 87.7177C242.181 88.1624 242.38 88.6224 242.779 89.0977C243.193 89.5577 243.706 90.1251 244.32 90.7997L252.83 99.9997H248.851L241.054 91.4437Z" fill="white"/>
+<path d="M263.702 83.8997H267.589V94.4337C267.589 95.2464 267.804 95.9057 268.233 96.4117C268.662 96.9177 269.306 97.1707 270.165 97.1707C271.039 97.1707 271.691 96.9177 272.12 96.4117C272.549 95.9057 272.764 95.2464 272.764 94.4337V83.8997H276.651V94.7097C276.651 95.7217 276.482 96.6034 276.145 97.3547C275.823 98.1061 275.363 98.7271 274.765 99.2177C274.182 99.6931 273.492 100.053 272.695 100.299C271.913 100.544 271.07 100.667 270.165 100.667C269.26 100.667 268.417 100.544 267.635 100.299C266.853 100.053 266.163 99.6931 265.565 99.2177C264.982 98.7271 264.522 98.1061 264.185 97.3547C263.863 96.6034 263.702 95.7217 263.702 94.7097V83.8997Z" fill="white"/>
+<path d="M280.944 83.8997H284.9V99.9997H280.944V83.8997Z" fill="white"/>
+<path d="M297.913 83.8997H301.248L291.427 103.45H287.954L297.913 83.8997Z" fill="white"/>
+<path d="M304.189 83.8997H308.076V94.4337C308.076 95.2464 308.291 95.9057 308.72 96.4117C309.15 96.9177 309.794 97.1707 310.652 97.1707C311.526 97.1707 312.178 96.9177 312.607 96.4117C313.037 95.9057 313.251 95.2464 313.251 94.4337V83.8997H317.138V94.7097C317.138 95.7217 316.97 96.6034 316.632 97.3547C316.31 98.1061 315.85 98.7271 315.252 99.2177C314.67 99.6931 313.98 100.053 313.182 100.299C312.4 100.544 311.557 100.667 310.652 100.667C309.748 100.667 308.904 100.544 308.122 100.299C307.34 100.053 306.65 99.6931 306.052 99.2177C305.47 98.7271 305.01 98.1061 304.672 97.3547C304.35 96.6034 304.189 95.7217 304.189 94.7097V83.8997Z" fill="white"/>
+<path d="M330.263 83.8997H335.07L330.01 91.7427L335.415 99.9997H330.608L327.664 94.6407L324.628 99.9997H319.821L325.341 91.7427L320.396 83.8997H325.203L327.687 88.5687L330.263 83.8997Z" fill="white"/>
+<path d="M346.094 83.8997H350.096V99.9997H346.094V83.8997ZM351.844 99.9997H348.67V96.5497H351.706C352.32 96.5497 352.91 96.4731 353.477 96.3197C354.06 96.1664 354.566 95.9134 354.995 95.5607C355.44 95.2081 355.793 94.7404 356.053 94.1577C356.314 93.5597 356.444 92.8237 356.444 91.9497C356.444 91.0757 356.314 90.3474 356.053 89.7647C355.793 89.1667 355.44 88.6914 354.995 88.3387C354.566 87.9861 354.06 87.7331 353.477 87.5797C352.91 87.4264 352.32 87.3497 351.706 87.3497H348.67V83.8997H351.844C353.608 83.8997 355.133 84.2294 356.421 84.8887C357.709 85.5481 358.706 86.4757 359.411 87.6717C360.117 88.8677 360.469 90.2937 360.469 91.9497C360.469 93.5904 360.117 95.0164 359.411 96.2277C358.706 97.4237 357.709 98.3514 356.421 99.0107C355.133 99.6701 353.608 99.9997 351.844 99.9997Z" fill="white"/>
+<path d="M366.539 99.9997V96.8027H374.658V99.9997H366.539ZM366.539 87.0967V83.8997H374.658V87.0967H366.539ZM366.539 93.0997V89.9717H374.198V93.0997H366.539ZM363.963 83.8997H367.689V99.9997H363.963V83.8997Z" fill="white"/>
+<path d="M380.592 94.3417C380.914 94.9244 381.274 95.4304 381.673 95.8597C382.087 96.2891 382.532 96.6187 383.007 96.8487C383.498 97.0787 384.011 97.1937 384.548 97.1937C385.115 97.1937 385.583 97.0557 385.951 96.7797C386.319 96.4884 386.503 96.0974 386.503 95.6067C386.503 95.1927 386.396 94.8631 386.181 94.6177C385.966 94.3571 385.621 94.1117 385.146 93.8817C384.671 93.6517 384.042 93.3911 383.26 93.0997C382.877 92.9617 382.432 92.7701 381.926 92.5247C381.435 92.2794 380.968 91.9651 380.523 91.5817C380.078 91.1831 379.71 90.7077 379.419 90.1557C379.128 89.5884 378.982 88.9061 378.982 88.1087C378.982 87.1581 379.227 86.3377 379.718 85.6477C380.224 84.9577 380.899 84.4364 381.742 84.0837C382.601 83.7157 383.551 83.5317 384.594 83.5317C385.667 83.5317 386.595 83.7081 387.377 84.0607C388.174 84.4134 388.834 84.8581 389.355 85.3947C389.876 85.9314 390.275 86.4757 390.551 87.0277L387.584 88.6837C387.354 88.3004 387.086 87.9707 386.779 87.6947C386.488 87.4034 386.158 87.1811 385.79 87.0277C385.437 86.8591 385.054 86.7747 384.64 86.7747C384.088 86.7747 383.666 86.8974 383.375 87.1427C383.084 87.3727 382.938 87.6641 382.938 88.0167C382.938 88.3847 383.076 88.7067 383.352 88.9827C383.643 89.2587 384.05 89.5117 384.571 89.7417C385.108 89.9717 385.752 90.2171 386.503 90.4777C387.07 90.6924 387.599 90.9454 388.09 91.2367C388.581 91.5127 389.01 91.8501 389.378 92.2487C389.761 92.6474 390.06 93.1074 390.275 93.6287C390.49 94.1501 390.597 94.7481 390.597 95.4227C390.597 96.2354 390.428 96.9637 390.091 97.6077C389.769 98.2364 389.324 98.7654 388.757 99.1947C388.205 99.6241 387.569 99.9461 386.848 100.161C386.143 100.391 385.414 100.506 384.663 100.506C383.62 100.506 382.647 100.322 381.742 99.9537C380.853 99.5704 380.078 99.0567 379.419 98.4127C378.76 97.7687 378.246 97.0634 377.878 96.2967L380.592 94.3417Z" fill="white"/>
+<path d="M394.196 83.8997H398.152V99.9997H394.196V83.8997Z" fill="white"/>
+<path d="M410.544 94.1807V91.1907H418.686C418.763 92.4787 418.632 93.6824 418.295 94.8017C417.958 95.9211 417.436 96.9101 416.731 97.7687C416.026 98.6274 415.144 99.3021 414.086 99.7927C413.028 100.268 411.817 100.506 410.452 100.506C409.164 100.506 407.983 100.306 406.91 99.9077C405.837 99.4937 404.909 98.9111 404.127 98.1597C403.345 97.3931 402.732 96.4884 402.287 95.4457C401.858 94.3877 401.643 93.2224 401.643 91.9497C401.643 90.6771 401.865 89.5271 402.31 88.4997C402.755 87.4571 403.383 86.5677 404.196 85.8317C405.009 85.0957 405.959 84.5284 407.048 84.1297C408.137 83.7311 409.317 83.5317 410.59 83.5317C411.725 83.5317 412.744 83.6927 413.649 84.0147C414.554 84.3367 415.351 84.7891 416.041 85.3717C416.746 85.9391 417.352 86.5984 417.858 87.3497L414.408 89.1437C414.04 88.4997 413.542 87.9707 412.913 87.5567C412.3 87.1274 411.525 86.9127 410.59 86.9127C409.701 86.9127 408.88 87.1121 408.129 87.5107C407.393 87.9094 406.803 88.4844 406.358 89.2357C405.929 89.9717 405.714 90.8764 405.714 91.9497C405.714 93.0077 405.921 93.9277 406.335 94.7097C406.764 95.4764 407.339 96.0744 408.06 96.5037C408.796 96.9177 409.639 97.1247 410.59 97.1247C411.173 97.1247 411.702 97.0557 412.177 96.9177C412.652 96.7644 413.059 96.5574 413.396 96.2967C413.733 96.0207 414.017 95.7064 414.247 95.3537C414.492 94.9857 414.684 94.5947 414.822 94.1807H410.544Z" fill="white"/>
+<path d="M433.405 83.8997H437.154V100.805L426.022 90.9377V99.9997H422.296V83.0947L433.405 92.9617V83.8997Z" fill="white"/>
+<path d="M444.132 99.9997V96.8027H452.251V99.9997H444.132ZM444.132 87.0967V83.8997H452.251V87.0967H444.132ZM444.132 93.0997V89.9717H451.791V93.0997H444.132ZM441.556 83.8997H445.282V99.9997H441.556V83.8997Z" fill="white"/>
+<path d="M460.44 92.7087H464.465L469.502 99.9997H464.948L460.44 92.7087ZM456.415 83.8997H460.302V99.9997H456.415V83.8997ZM458.853 87.1887V83.8997H462.28C463.66 83.8997 464.81 84.1221 465.73 84.5667C466.65 85.0114 467.347 85.6324 467.823 86.4297C468.298 87.2117 468.536 88.1241 468.536 89.1667C468.536 90.1941 468.298 91.1064 467.823 91.9037C467.347 92.6857 466.65 93.2991 465.73 93.7437C464.81 94.1884 463.66 94.4107 462.28 94.4107H458.853V91.3977H462.004C462.525 91.3977 462.97 91.3211 463.338 91.1677C463.721 90.9991 464.012 90.7614 464.212 90.4547C464.411 90.1327 464.511 89.7494 464.511 89.3047C464.511 88.8601 464.411 88.4844 464.212 88.1777C464.012 87.8557 463.721 87.6104 463.338 87.4417C462.97 87.2731 462.525 87.1887 462.004 87.1887H458.853Z" fill="white"/>
+<path d="M143.938 48.998L156.307 14.5H168.579L181.146 48.998H169.614L162.517 25.6872H162.32L155.223 48.998H143.938ZM155.174 44.1682V36.1351H169.762V44.1682H155.174Z" fill="white"/>
+<path d="M193.524 49.4415C192.177 49.4415 190.797 49.3101 189.384 49.0472C188.004 48.8173 186.493 48.4394 184.85 47.9137L182.879 47.2731L185.047 38.6979L188.201 39.0921C189.121 39.2235 189.975 39.3057 190.764 39.3385C191.552 39.3385 192.308 39.3385 193.031 39.3385C194.345 39.3385 195.364 39.0264 196.086 38.4022C196.809 37.7779 197.171 36.9565 197.171 35.938V14.5H208.161V35.9873C208.161 40.357 206.863 43.6918 204.267 45.9917C201.705 48.2916 198.123 49.4415 193.524 49.4415Z" fill="white"/>
+<path d="M208.717 48.998L221.087 14.5H233.359L245.926 48.998H234.394L227.297 25.6872H227.1L220.003 48.998H208.717ZM219.954 44.1682V36.1351H234.542V44.1682H219.954Z" fill="white"/>
+<path d="M255.403 48.998V39.0428L241.456 14.5H253.974L260.873 28.792H261.07L268.019 14.5H280.044L266.393 38.6486V48.998H255.403Z" fill="white"/>
+<path d="M308.453 49.4415C307.106 49.4415 305.726 49.3101 304.313 49.0472C302.933 48.8173 301.422 48.4394 299.779 47.9137L297.808 47.2731L299.976 38.6979L303.13 39.0921C304.05 39.2235 304.904 39.3057 305.693 39.3385C306.481 39.3385 307.237 39.3385 307.96 39.3385C309.274 39.3385 310.293 39.0264 311.015 38.4022C311.738 37.7779 312.1 36.9565 312.1 35.938V14.5H323.09V35.9873C323.09 40.357 321.792 43.6918 319.196 45.9917C316.634 48.2916 313.052 49.4415 308.453 49.4415Z" fill="white"/>
+<path d="M323.646 48.998L336.016 14.5H348.288L360.855 48.998H349.323L342.226 25.6872H342.029L334.932 48.998H323.646ZM334.883 44.1682V36.1351H349.471V44.1682H334.883Z" fill="white"/>
+<path d="M364.312 48.998V14.5H382.547C385.143 14.5 387.393 14.9764 389.299 15.9292C391.204 16.8491 392.666 18.1634 393.685 19.8718C394.736 21.5803 395.262 23.6009 395.262 25.9336C395.262 28.2006 394.802 30.0734 393.882 31.5518C392.962 33.0303 391.73 34.1967 390.186 35.0509C388.642 35.9052 386.917 36.513 385.011 36.8744C383.138 37.2358 381.249 37.4165 379.344 37.4165H375.302V48.998H364.312ZM385.11 48.998L378.506 36.7265L388.855 34.9031L397.184 48.998H385.11ZM375.302 30.0734H380.083C381.594 30.0734 382.695 29.8105 383.385 29.2848C384.108 28.7263 384.469 27.8885 384.469 26.7714C384.469 25.6215 384.124 24.8001 383.434 24.3073C382.744 23.8144 381.627 23.568 380.083 23.568H375.302V30.0734Z" fill="white"/>
+<path d="M409.412 48.998V39.0428L395.465 14.5H407.982L414.882 28.792H415.079L422.028 14.5H434.053L420.402 38.6486V48.998H409.412Z" fill="white"/>
+<path d="M429.576 48.998L441.945 14.5H454.217L466.784 48.998H455.252L448.155 25.6872H447.958L440.861 48.998H429.576ZM440.812 44.1682V36.1351H455.4V44.1682H440.812Z" fill="white"/>
+<path d="M470.242 48.998V14.5H481.232V39.3878H497.051V48.998H470.242Z" fill="white"/>
       </svg></a>
       <ul class="nav-links">
         <li><a href="#about">About</a></li>
@@ -1245,23 +1541,56 @@ footer {
 <section id="hero">
   <div class="hero-bg"></div>
   <div class="hero-grid-overlay"></div>
+  <div class="hero-orb hero-orb-1"></div>
+  <div class="hero-orb hero-orb-2"></div>
+  <div class="hero-accent-line"></div>
+
   <div class="container">
     <div class="hero-inner">
+
+      <!-- LEFT -->
       <div class="hero-left">
-        <div class="hero-tag">
-          <span class="dot-pulse"></span>
-          Available for Freelance & Full-time
+        <div class="hero-eyebrow">
+          <div class="hero-tag">
+            <span class="dot-pulse"></span>
+            Available for Freelance &amp; Full-time
+          </div>
         </div>
+
         <h1 class="hero-name">
-          <span class="ln1">Ajay Jaryal</span>
+          <span class="ln1">Ajay</span>
+          <span class="ln2">Jaryal</span>
         </h1>
+
+        <div class="hero-role-line">
+          <span class="hero-role-prefix">I build</span>
+          <span class="hero-role-typed" id="heroTyped">Frontend Experiences</span>
+        </div>
+
         <p class="hero-desc">
           Frontend Developer &amp; UI/UX Specialist crafting <strong>modern, responsive</strong> and high-performance web experiences with <strong>2.5+ years</strong> of industry expertise.
         </p>
+
+        <div class="hero-stats-row">
+          <div class="hstat">
+            <div class="hstat-num">2.5<span style="color:var(--blue);font-size:.8em">+</span></div>
+            <div class="hstat-lbl">Years Exp.</div>
+          </div>
+          <div class="hstat">
+            <div class="hstat-num">50<span style="color:var(--blue);font-size:.8em">+</span></div>
+            <div class="hstat-lbl">Projects</div>
+          </div>
+          <div class="hstat">
+            <div class="hstat-num">4</div>
+            <div class="hstat-lbl">Companies</div>
+          </div>
+        </div>
+
         <div class="hero-actions">
           <a href="#work" class="btn-primary"><i class="fa-solid fa-eye"></i> View My Work</a>
           <a href="#contact" class="btn-outline"><i class="fa-solid fa-paper-plane"></i> Get in Touch</a>
         </div>
+
         <div class="hero-socials">
           <a href="https://linkedin.com/in/ajayjaryal" target="_blank" class="social-btn" title="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
           <a href="https://github.com/ajayjaryal" target="_blank" class="social-btn" title="GitHub"><i class="fa-brands fa-github"></i></a>
@@ -1269,49 +1598,61 @@ footer {
           <a href="mailto:ajayjaryal@email.com" class="social-btn" title="Email"><i class="fa-solid fa-envelope"></i></a>
         </div>
       </div>
+
+      <!-- RIGHT -->
       <div class="hero-card-wrap">
-        <div class="contact-form reveal reveal-d1">
-        <div class="form-title"><i class="fa-solid fa-paper-plane" style="color:var(--blue-light);margin-right:.5rem"></i>Send Me a Message</div>
-        <div class="form-row">
-          <div class="form-group">
-            <label><i class="fa-solid fa-user"></i> Full Name</label>
-            <input type="text" id="fname" placeholder="Your Name">
+        <div class="hero-profile-card">
+          <div class="hero-img-wrap">
+            <img src="hero-img.webp" alt="Ajay Jaryal" class="hero-photo"
+              onerror="this.style.display='none';this.nextElementSibling.style.display='none';this.parentElement.querySelector('.hero-img-fallback').style.display='flex'">
+            <div class="hero-img-glow"></div>
+            <div class="hero-img-fallback" style="display:none;position:absolute;inset:0;align-items:center;justify-content:center;">AJ</div>
           </div>
-          <div class="form-group">
-            <label><i class="fa-solid fa-envelope"></i> Email Address</label>
-            <input type="email" id="femail" placeholder="your@email.com">
+          <div class="profile-info-row">
+            <div class="profile-name-block">
+              <div class="pname">Ajay Jaryal</div>
+              <div class="prole">Frontend Developer &amp; UI/UX</div>
+            </div>
+            <div class="profile-status">
+              <span class="profile-status-dot"></span> Open to Work
+            </div>
+          </div>
+          <div class="profile-stats">
+            <div class="pstat">
+              <div class="pstat-val">2.5<sup>+</sup></div>
+              <div class="pstat-lbl">Yrs Exp</div>
+            </div>
+            <div class="pstat">
+              <div class="pstat-val">50<sup>+</sup></div>
+              <div class="pstat-lbl">Projects</div>
+            </div>
+            <div class="pstat">
+              <div class="pstat-val">4</div>
+              <div class="pstat-lbl">Companies</div>
+            </div>
           </div>
         </div>
-        <div class="form-group">
-          <label><i class="fa-solid fa-briefcase"></i> Service Needed</label>
-          <select id="fservice">
-            <option value="" disabled selected>Select a service</option>
-            <option>Custom Website Development</option>
-            <option>WordPress Development</option>
-            <option>UI/UX Design</option>
-            <option>E-Commerce Store</option>
-            <option>Responsive Design Fix</option>
-            <option>Other</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <label><i class="fa-solid fa-message"></i> Message</label>
-          <textarea id="fmessage" rows="5" placeholder="Tell me about your project..."></textarea>
-        </div>
-        <button class="btn-submit" onclick="handleFormSubmit()">
-          <i class="fa-solid fa-paper-plane"></i> Send Message
-        </button>
-        <div class="form-success" id="formSuccess">
-          <i class="fa-solid fa-circle-check" style="font-size:2rem;margin-bottom:.8rem;display:block"></i>
-          Thank you! Your message has been sent. I'll get back to you soon.
+
+        <div class="hero-tech-card">
+          <div class="hero-tech-label">Core Technologies</div>
+          <div class="hero-tech-pills">
+            <span class="tpill">HTML5</span>
+            <span class="tpill">CSS3</span>
+            <span class="tpill">JavaScript</span>
+            <span class="tpill">WordPress</span>
+            <span class="tpill">Bootstrap</span>
+            <span class="tpill">Figma</span>
+            <span class="tpill">jQuery</span>
+          </div>
         </div>
       </div>
-      </div>
+
     </div>
   </div>
+
   <div class="hero-scroll-hint">
     <div class="scroll-line"></div>
-    <span class="scroll-text"><i class="fa-solid fa-arrow-down" style="font-size:.6rem"></i> Scroll to explore</span>
+    <span class="scroll-text"><i class="fa-solid fa-arrow-down" style="font-size:.55rem"></i> Scroll to explore</span>
     <div class="scroll-line" style="transform:scaleX(-1)"></div>
   </div>
 </section>
@@ -1320,29 +1661,19 @@ footer {
 <section id="about">
   <div class="container">
     <div class="section-label reveal"><i class="fa-solid fa-user"></i> About Me</div>
-    <h2 class="section-title reveal reveal-d1">Building Digital <em>Experiences</em> That Matter</h2>
+    <h2 class="section-title reveal reveal-d1">Building Digital <em>Experiences</em><br> That Matter</h2>
     <div class="about-grid">
       <div class="about-text reveal reveal-d2">
         <p>I am a passionate <strong>Frontend Developer and UI/UX Designer</strong> with 2.5+ years of experience in building modern, responsive, and high-performance websites.</p>
         <p>I specialize in creating <strong>custom websites from scratch</strong> using HTML, CSS, JavaScript, and Bootstrap, along with strong expertise in WordPress development. My focus is delivering clean, scalable, and <strong>SEO-friendly code</strong> that ensures fast performance across all devices.</p>
         <p>Currently working at <strong>Softtrix Tech Solutions Pvt Ltd</strong>, I contribute to developing user-centric and business-focused web solutions that drive real results.</p>
+      </div>
+      <div class="reveal reveal-d3">
         <div class="about-highlights">
           <div class="hl-item"><div class="hl-icon"><i class="fa-solid fa-bolt"></i></div><div class="hl-title">Fast & Performant</div><div class="hl-desc">Optimized code for lightning-fast load times.</div></div>
           <div class="hl-item"><div class="hl-icon"><i class="fa-solid fa-mobile-screen"></i></div><div class="hl-title">Mobile-First</div><div class="hl-desc">Flawless on every screen size and device.</div></div>
           <div class="hl-item"><div class="hl-icon"><i class="fa-solid fa-palette"></i></div><div class="hl-title">Design-Focused</div><div class="hl-desc">Beautiful design meets clean, precise code.</div></div>
           <div class="hl-item"><div class="hl-icon"><i class="fa-brands fa-searchengin"></i></div><div class="hl-title">SEO-Friendly</div><div class="hl-desc">Semantic HTML that search engines love.</div></div>
-        </div>
-      </div>
-      <div class="reveal reveal-d3">
-        <div class="about-stats">
-          <div class="ast"><div class="ast-val">500+</div><div class="ast-lbl">Connections</div></div>
-          <div class="ast"><div class="ast-val">4</div><div class="ast-lbl">Companies</div></div>
-          <div class="ast span2"><div class="ast-val">2.5+ Yrs</div><div class="ast-lbl">Professional Experience</div></div>
-          <div class="loc-card">
-            <div class="loc-label"><i class="fa-solid fa-location-dot"></i> Location</div>
-            <div class="loc-row"><i class="fa-solid fa-map-pin"></i> Chamba, Himachal Pradesh, India</div>
-            <div class="loc-row"><i class="fa-solid fa-building"></i> Softtrix Tech Solutions, Mohali</div>
-          </div>
         </div>
       </div>
     </div>
@@ -1516,6 +1847,52 @@ footer {
   </div>
 </section>
 
+<section id="services">
+  <div class="container">
+    <div class="section-label reveal"><i class="fa-solid fa-gear"></i> What I Offer</div>
+    <h2 class="section-title reveal reveal-d1">My <em>Services</em></h2>
+    <p class="section-desc reveal reveal-d2">End-to-end web development services tailored to your business needs and goals.</p>
+    <div class="svc-grid">
+      <div class="svc-card reveal">
+        <span class="svc-num">01</span>
+        <div class="svc-icon"><i class="fa-solid fa-laptop-code"></i></div>
+        <div class="svc-title">Custom Website Development</div>
+        <p class="svc-desc">Building pixel-perfect websites from scratch using HTML5, CSS3, JavaScript, and Bootstrap. Clean, maintainable, scalable code every time.</p>
+      </div>
+      <div class="svc-card reveal reveal-d1">
+        <span class="svc-num">02</span>
+        <div class="svc-icon"><i class="fa-brands fa-wordpress"></i></div>
+        <div class="svc-title">WordPress Development</div>
+        <p class="svc-desc">Custom WordPress themes, Elementor page builder, WooCommerce stores, and full CMS setup for easy content management.</p>
+      </div>
+      <div class="svc-card reveal reveal-d2">
+        <span class="svc-num">03</span>
+        <div class="svc-icon"><i class="fa-solid fa-pen-ruler"></i></div>
+        <div class="svc-title">UI/UX Design</div>
+        <p class="svc-desc">Crafting wireframes, prototypes, and polished UI designs in Figma and Adobe XD that convert visitors into customers.</p>
+      </div>
+      <div class="svc-card reveal reveal-d3">
+        <span class="svc-num">04</span>
+        <div class="svc-icon"><i class="fa-solid fa-mobile-screen-button"></i></div>
+        <div class="svc-title">Responsive Design</div>
+        <p class="svc-desc">Mobile-first development ensuring flawless experiences across all screen sizes — phones to large desktops.</p>
+      </div>
+      <div class="svc-card reveal">
+        <span class="svc-num">05</span>
+        <div class="svc-icon"><i class="fa-solid fa-cart-shopping"></i></div>
+        <div class="svc-title">E-Commerce Solutions</div>
+        <p class="svc-desc">WooCommerce stores with product pages, cart, checkout, and payment gateway integrations for growing businesses.</p>
+      </div>
+      <div class="svc-card reveal reveal-d1">
+        <span class="svc-num">06</span>
+        <div class="svc-icon"><i class="fa-brands fa-searchengin"></i></div>
+        <div class="svc-title">SEO-Optimized Code</div>
+        <p class="svc-desc">Semantic HTML, fast load times, and best practices baked in — giving your site the best chance to rank on Google.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
 
 <!-- ═══ EXPERIENCE ═══ -->
 <section id="experience">
@@ -1585,51 +1962,7 @@ footer {
   </div>
 </section>
 
-<section id="services">
-  <div class="container">
-    <div class="section-label reveal"><i class="fa-solid fa-gear"></i> What I Offer</div>
-    <h2 class="section-title reveal reveal-d1">My <em>Services</em></h2>
-    <p class="section-desc reveal reveal-d2">End-to-end web development services tailored to your business needs and goals.</p>
-    <div class="svc-grid">
-      <div class="svc-card reveal">
-        <span class="svc-num">01</span>
-        <div class="svc-icon"><i class="fa-solid fa-laptop-code"></i></div>
-        <div class="svc-title">Custom Website Development</div>
-        <p class="svc-desc">Building pixel-perfect websites from scratch using HTML5, CSS3, JavaScript, and Bootstrap. Clean, maintainable, scalable code every time.</p>
-      </div>
-      <div class="svc-card reveal reveal-d1">
-        <span class="svc-num">02</span>
-        <div class="svc-icon"><i class="fa-brands fa-wordpress"></i></div>
-        <div class="svc-title">WordPress Development</div>
-        <p class="svc-desc">Custom WordPress themes, Elementor page builder, WooCommerce stores, and full CMS setup for easy content management.</p>
-      </div>
-      <div class="svc-card reveal reveal-d2">
-        <span class="svc-num">03</span>
-        <div class="svc-icon"><i class="fa-solid fa-pen-ruler"></i></div>
-        <div class="svc-title">UI/UX Design</div>
-        <p class="svc-desc">Crafting wireframes, prototypes, and polished UI designs in Figma and Adobe XD that convert visitors into customers.</p>
-      </div>
-      <div class="svc-card reveal reveal-d3">
-        <span class="svc-num">04</span>
-        <div class="svc-icon"><i class="fa-solid fa-mobile-screen-button"></i></div>
-        <div class="svc-title">Responsive Design</div>
-        <p class="svc-desc">Mobile-first development ensuring flawless experiences across all screen sizes — phones to large desktops.</p>
-      </div>
-      <div class="svc-card reveal">
-        <span class="svc-num">05</span>
-        <div class="svc-icon"><i class="fa-solid fa-cart-shopping"></i></div>
-        <div class="svc-title">E-Commerce Solutions</div>
-        <p class="svc-desc">WooCommerce stores with product pages, cart, checkout, and payment gateway integrations for growing businesses.</p>
-      </div>
-      <div class="svc-card reveal reveal-d1">
-        <span class="svc-num">06</span>
-        <div class="svc-icon"><i class="fa-brands fa-searchengin"></i></div>
-        <div class="svc-title">SEO-Optimized Code</div>
-        <p class="svc-desc">Semantic HTML, fast load times, and best practices baked in — giving your site the best chance to rank on Google.</p>
-      </div>
-    </div>
-  </div>
-</section>
+
 
 <!-- ═══ MARQUEE ═══ -->
 <div class="marquee-strip">
@@ -1736,14 +2069,42 @@ footer {
 <footer>
   <div class="container">
     <div class="footer-inner">
-      <svg class="footer-logo" viewBox="0 0 498 132" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M37.0333 86.4266C41.3767 90.7707 48.4197 90.7707 52.7631 86.4266C57.1066 82.0846 57.1066 75.0402 52.7631 70.6982L19.0813 37.0157C14.7379 32.6722 7.69494 32.6715 3.3515 37.0157C-0.992651 41.3584 -0.991926 48.4021 3.35223 52.7462L23.2757 72.6215L37.0333 86.4266Z" fill="#9DBFFF" opacity=".7"/>
-        <path d="M52.7628 3.31253C48.4187 -1.03162 41.3757 -1.0309 37.0323 3.31253L3.3512 36.9943C-0.902229 41.247 -1.16866 47.9026 2.90691 52.2633L23.2747 72.6189C12.5767 61.9208 26.9398 44.8654 26.9398 44.8654L52.7628 19.0416C57.1048 14.6989 57.1063 7.65597 52.7628 3.31253Z" fill="#4050FF" opacity=".7"/>
-        <path d="M80.1016 44.8128C75.7567 40.4686 68.7145 40.4686 64.3703 44.8128C60.0276 49.1562 60.0276 56.1992 64.3703 60.5419L98.0521 94.2244C102.396 98.5679 109.44 98.5686 113.782 94.2244C118.127 89.881 118.125 82.838 113.782 78.4931L93.8577 58.6186L80.1016 44.8128Z" fill="#9DBFFF" opacity=".7"/>
-        <path d="M64.3702 127.925C68.7144 132.268 75.7566 132.268 80.1015 127.925L113.782 94.2439C118.035 89.9912 118.302 83.3349 114.226 78.9742L93.8576 58.6172C104.556 69.3152 90.1932 86.3714 90.1932 86.3714L64.3709 112.195C60.0275 116.539 60.0275 123.582 64.3702 127.925Z" fill="#4050FF" opacity=".7"/>
-        <path d="M51.6779 123.494C49.9023 129.171 43.8624 132.333 38.1854 130.557C32.5105 128.782 29.348 122.741 31.1222 117.065L65.9605 7.55776C67.7369 1.88149 73.7789 -1.28176 79.4545 0.493923C85.1293 2.26816 88.2918 8.31024 86.5176 13.9865L51.6779 123.494Z" fill="white" opacity=".4"/>
-      </svg>
-      <div class="footer-text"><i class="fa-solid fa-heart" style="color:#ef4444;font-size:.75rem"></i> Designed & Built by Ajay Jaryal · Himachal Pradesh, India · © 2025</div>
+      <a href="#"><svg class="footer-logo" viewBox="0 0 498 132" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M37.0333 86.4256C41.3767 90.7697 48.4197 90.7697 52.7631 86.4256C57.1066 82.0836 57.1066 75.0392 52.7631 70.6972L19.0813 37.0147C14.7379 32.6712 7.69494 32.6705 3.3515 37.0147C-0.992651 41.3574 -0.991926 48.4011 3.35223 52.7452L23.2757 72.6205L37.0333 86.4256Z" fill="#9DBFFF"/>
+<path d="M52.7628 3.31253C48.4187 -1.03162 41.3757 -1.0309 37.0323 3.31253L3.3512 36.9943C-0.902229 41.247 -1.16866 47.9026 2.90691 52.2633L3.07901 52.4469L3.30295 52.6709C3.31951 52.6874 3.33391 52.7062 3.35047 52.7234C3.36775 52.7422 3.38792 52.7566 3.40664 52.7746L23.2747 72.6189C12.5767 61.9208 26.9398 44.8654 26.9398 44.8654H26.9369L52.7628 19.0416C57.1048 14.6989 57.1063 7.65597 52.7628 3.31253Z" fill="#4050FF"/>
+<path d="M80.0977 44.8148C75.7528 40.4706 68.7106 40.4706 64.3664 44.8148C60.0237 49.1582 60.0237 56.2012 64.3664 60.5439L98.0482 94.2264C102.392 98.5698 109.436 98.5705 113.778 94.2264C118.123 89.8829 118.121 82.84 113.778 78.4951L93.8538 58.6206L80.0977 44.8148Z" fill="#9DBFFF"/>
+<path d="M64.3663 127.927C68.7105 132.27 75.7527 132.27 80.0976 127.927L113.778 94.2458C118.031 89.9931 118.298 83.3368 114.222 78.9761L114.05 78.7918L113.825 78.5678C113.81 78.5506 113.795 78.5326 113.778 78.5153C113.761 78.4973 113.74 78.4822 113.722 78.4641L93.8537 58.6191C104.552 69.3172 90.1893 86.3734 90.1893 86.3734L90.1915 86.3719L64.367 112.197C60.0236 116.541 60.0236 123.584 64.3663 127.927Z" fill="#4050FF"/>
+<path d="M51.674 123.494C49.8984 129.171 43.8584 132.333 38.1814 130.557C32.5066 128.782 29.3441 122.741 31.1183 117.065L65.9565 7.55776C67.7329 1.88149 73.775 -1.28176 79.4506 0.493923C85.1254 2.26816 88.2879 8.31024 86.5137 13.9865L51.674 123.494Z" fill="white"/>
+<rect x="142" y="66" width="356" height="51" fill="#4050FF"/>
+<path d="M188.044 93.0767L191.172 83.8997H195.795L188.826 100.943L183.628 91.2367L178.453 100.943L171.484 83.8997H176.084L179.258 93.0767L183.628 83.0947L188.044 93.0767Z" fill="white"/>
+<path d="M201.175 99.9997V96.8027H209.294V99.9997H201.175ZM201.175 87.0967V83.8997H209.294V87.0967H201.175ZM201.175 93.0997V89.9717H208.834V93.0997H201.175ZM198.599 83.8997H202.325V99.9997H198.599V83.8997Z" fill="white"/>
+<path d="M216.356 91.9957V90.2937H218.955C219.399 90.2937 219.775 90.2247 220.082 90.0867C220.404 89.9487 220.649 89.7571 220.818 89.5117C220.986 89.2511 221.071 88.9367 221.071 88.5687C221.071 88.0167 220.887 87.6027 220.519 87.3267C220.151 87.0507 219.629 86.9127 218.955 86.9127H217.345V96.9867H219.323C219.829 96.9867 220.281 96.9254 220.68 96.8027C221.078 96.6647 221.393 96.4501 221.623 96.1587C221.868 95.8521 221.991 95.4381 221.991 94.9167C221.991 94.5794 221.922 94.2881 221.784 94.0427C221.646 93.7974 221.454 93.5981 221.209 93.4447C220.963 93.2914 220.68 93.1841 220.358 93.1227C220.051 93.0461 219.706 93.0077 219.323 93.0077H216.356V90.8917H219.76C220.542 90.8917 221.301 90.9761 222.037 91.1447C222.773 91.3134 223.44 91.5894 224.038 91.9727C224.636 92.3407 225.111 92.8161 225.464 93.3987C225.832 93.9661 226.016 94.6561 226.016 95.4687C226.016 96.5421 225.755 97.4084 225.234 98.0677C224.728 98.7271 224.007 99.2177 223.072 99.5397C222.136 99.8464 221.032 99.9997 219.76 99.9997H213.458V83.8997H219.369C220.488 83.8997 221.469 84.0531 222.313 84.3597C223.171 84.6511 223.846 85.1034 224.337 85.7167C224.843 86.3147 225.096 87.0737 225.096 87.9937C225.096 88.8371 224.843 89.5577 224.337 90.1557C223.846 90.7537 223.171 91.2137 222.313 91.5357C221.469 91.8424 220.488 91.9957 219.369 91.9957H216.356Z" fill="white"/>
+<path d="M241.054 91.4437C240.701 91.0604 240.348 90.6694 239.996 90.2707C239.658 89.8567 239.375 89.4274 239.145 88.9827C238.93 88.5381 238.823 88.0397 238.823 87.4877C238.823 86.8284 239.022 86.1921 239.421 85.5787C239.819 84.9654 240.387 84.4671 241.123 84.0837C241.874 83.7004 242.756 83.5087 243.768 83.5087C244.78 83.5087 245.631 83.7004 246.321 84.0837C247.011 84.4671 247.532 84.9577 247.885 85.5557C248.237 86.1384 248.414 86.7517 248.414 87.3957C248.414 87.9324 248.329 88.4001 248.161 88.7987C247.992 89.1821 247.739 89.5501 247.402 89.9027C247.064 90.2401 246.65 90.5851 246.16 90.9377C245.669 91.2751 245.102 91.6584 244.458 92.0877C244.059 92.3484 243.622 92.5861 243.147 92.8007C242.687 93.0001 242.257 93.2147 241.859 93.4447C241.46 93.6594 241.13 93.9201 240.87 94.2267C240.609 94.5181 240.479 94.9014 240.479 95.3767C240.479 95.7447 240.571 96.0821 240.755 96.3887C240.954 96.6801 241.23 96.9177 241.583 97.1017C241.951 97.2857 242.395 97.3777 242.917 97.3777C243.576 97.3777 244.22 97.2397 244.849 96.9637C245.493 96.6877 246.114 96.3121 246.712 95.8367C247.31 95.3614 247.869 94.8094 248.391 94.1807C248.927 93.5521 249.433 92.8774 249.909 92.1567L252.232 93.9507C251.726 94.6714 251.143 95.4074 250.484 96.1587C249.824 96.9101 249.088 97.6001 248.276 98.2287C247.463 98.8421 246.566 99.3404 245.585 99.7237C244.619 100.107 243.576 100.299 242.457 100.299C241.429 100.299 240.486 100.115 239.628 99.7467C238.784 99.3787 238.11 98.8497 237.604 98.1597C237.098 97.4697 236.845 96.6494 236.845 95.6987C236.845 94.9627 236.99 94.3341 237.282 93.8127C237.573 93.2761 237.949 92.8237 238.409 92.4557C238.869 92.0724 239.359 91.7581 239.881 91.5127C240.417 91.2521 240.923 91.0297 241.399 90.8457C241.889 90.6617 242.296 90.4931 242.618 90.3397C243.476 89.9257 244.128 89.4887 244.573 89.0287C245.033 88.5687 245.263 88.1317 245.263 87.7177C245.263 87.4724 245.201 87.2424 245.079 87.0277C244.956 86.8131 244.78 86.6367 244.55 86.4987C244.335 86.3607 244.067 86.2917 243.745 86.2917C243.223 86.2917 242.832 86.4374 242.572 86.7287C242.311 87.0201 242.181 87.3497 242.181 87.7177C242.181 88.1624 242.38 88.6224 242.779 89.0977C243.193 89.5577 243.706 90.1251 244.32 90.7997L252.83 99.9997H248.851L241.054 91.4437Z" fill="white"/>
+<path d="M263.702 83.8997H267.589V94.4337C267.589 95.2464 267.804 95.9057 268.233 96.4117C268.662 96.9177 269.306 97.1707 270.165 97.1707C271.039 97.1707 271.691 96.9177 272.12 96.4117C272.549 95.9057 272.764 95.2464 272.764 94.4337V83.8997H276.651V94.7097C276.651 95.7217 276.482 96.6034 276.145 97.3547C275.823 98.1061 275.363 98.7271 274.765 99.2177C274.182 99.6931 273.492 100.053 272.695 100.299C271.913 100.544 271.07 100.667 270.165 100.667C269.26 100.667 268.417 100.544 267.635 100.299C266.853 100.053 266.163 99.6931 265.565 99.2177C264.982 98.7271 264.522 98.1061 264.185 97.3547C263.863 96.6034 263.702 95.7217 263.702 94.7097V83.8997Z" fill="white"/>
+<path d="M280.944 83.8997H284.9V99.9997H280.944V83.8997Z" fill="white"/>
+<path d="M297.913 83.8997H301.248L291.427 103.45H287.954L297.913 83.8997Z" fill="white"/>
+<path d="M304.189 83.8997H308.076V94.4337C308.076 95.2464 308.291 95.9057 308.72 96.4117C309.15 96.9177 309.794 97.1707 310.652 97.1707C311.526 97.1707 312.178 96.9177 312.607 96.4117C313.037 95.9057 313.251 95.2464 313.251 94.4337V83.8997H317.138V94.7097C317.138 95.7217 316.97 96.6034 316.632 97.3547C316.31 98.1061 315.85 98.7271 315.252 99.2177C314.67 99.6931 313.98 100.053 313.182 100.299C312.4 100.544 311.557 100.667 310.652 100.667C309.748 100.667 308.904 100.544 308.122 100.299C307.34 100.053 306.65 99.6931 306.052 99.2177C305.47 98.7271 305.01 98.1061 304.672 97.3547C304.35 96.6034 304.189 95.7217 304.189 94.7097V83.8997Z" fill="white"/>
+<path d="M330.263 83.8997H335.07L330.01 91.7427L335.415 99.9997H330.608L327.664 94.6407L324.628 99.9997H319.821L325.341 91.7427L320.396 83.8997H325.203L327.687 88.5687L330.263 83.8997Z" fill="white"/>
+<path d="M346.094 83.8997H350.096V99.9997H346.094V83.8997ZM351.844 99.9997H348.67V96.5497H351.706C352.32 96.5497 352.91 96.4731 353.477 96.3197C354.06 96.1664 354.566 95.9134 354.995 95.5607C355.44 95.2081 355.793 94.7404 356.053 94.1577C356.314 93.5597 356.444 92.8237 356.444 91.9497C356.444 91.0757 356.314 90.3474 356.053 89.7647C355.793 89.1667 355.44 88.6914 354.995 88.3387C354.566 87.9861 354.06 87.7331 353.477 87.5797C352.91 87.4264 352.32 87.3497 351.706 87.3497H348.67V83.8997H351.844C353.608 83.8997 355.133 84.2294 356.421 84.8887C357.709 85.5481 358.706 86.4757 359.411 87.6717C360.117 88.8677 360.469 90.2937 360.469 91.9497C360.469 93.5904 360.117 95.0164 359.411 96.2277C358.706 97.4237 357.709 98.3514 356.421 99.0107C355.133 99.6701 353.608 99.9997 351.844 99.9997Z" fill="white"/>
+<path d="M366.539 99.9997V96.8027H374.658V99.9997H366.539ZM366.539 87.0967V83.8997H374.658V87.0967H366.539ZM366.539 93.0997V89.9717H374.198V93.0997H366.539ZM363.963 83.8997H367.689V99.9997H363.963V83.8997Z" fill="white"/>
+<path d="M380.592 94.3417C380.914 94.9244 381.274 95.4304 381.673 95.8597C382.087 96.2891 382.532 96.6187 383.007 96.8487C383.498 97.0787 384.011 97.1937 384.548 97.1937C385.115 97.1937 385.583 97.0557 385.951 96.7797C386.319 96.4884 386.503 96.0974 386.503 95.6067C386.503 95.1927 386.396 94.8631 386.181 94.6177C385.966 94.3571 385.621 94.1117 385.146 93.8817C384.671 93.6517 384.042 93.3911 383.26 93.0997C382.877 92.9617 382.432 92.7701 381.926 92.5247C381.435 92.2794 380.968 91.9651 380.523 91.5817C380.078 91.1831 379.71 90.7077 379.419 90.1557C379.128 89.5884 378.982 88.9061 378.982 88.1087C378.982 87.1581 379.227 86.3377 379.718 85.6477C380.224 84.9577 380.899 84.4364 381.742 84.0837C382.601 83.7157 383.551 83.5317 384.594 83.5317C385.667 83.5317 386.595 83.7081 387.377 84.0607C388.174 84.4134 388.834 84.8581 389.355 85.3947C389.876 85.9314 390.275 86.4757 390.551 87.0277L387.584 88.6837C387.354 88.3004 387.086 87.9707 386.779 87.6947C386.488 87.4034 386.158 87.1811 385.79 87.0277C385.437 86.8591 385.054 86.7747 384.64 86.7747C384.088 86.7747 383.666 86.8974 383.375 87.1427C383.084 87.3727 382.938 87.6641 382.938 88.0167C382.938 88.3847 383.076 88.7067 383.352 88.9827C383.643 89.2587 384.05 89.5117 384.571 89.7417C385.108 89.9717 385.752 90.2171 386.503 90.4777C387.07 90.6924 387.599 90.9454 388.09 91.2367C388.581 91.5127 389.01 91.8501 389.378 92.2487C389.761 92.6474 390.06 93.1074 390.275 93.6287C390.49 94.1501 390.597 94.7481 390.597 95.4227C390.597 96.2354 390.428 96.9637 390.091 97.6077C389.769 98.2364 389.324 98.7654 388.757 99.1947C388.205 99.6241 387.569 99.9461 386.848 100.161C386.143 100.391 385.414 100.506 384.663 100.506C383.62 100.506 382.647 100.322 381.742 99.9537C380.853 99.5704 380.078 99.0567 379.419 98.4127C378.76 97.7687 378.246 97.0634 377.878 96.2967L380.592 94.3417Z" fill="white"/>
+<path d="M394.196 83.8997H398.152V99.9997H394.196V83.8997Z" fill="white"/>
+<path d="M410.544 94.1807V91.1907H418.686C418.763 92.4787 418.632 93.6824 418.295 94.8017C417.958 95.9211 417.436 96.9101 416.731 97.7687C416.026 98.6274 415.144 99.3021 414.086 99.7927C413.028 100.268 411.817 100.506 410.452 100.506C409.164 100.506 407.983 100.306 406.91 99.9077C405.837 99.4937 404.909 98.9111 404.127 98.1597C403.345 97.3931 402.732 96.4884 402.287 95.4457C401.858 94.3877 401.643 93.2224 401.643 91.9497C401.643 90.6771 401.865 89.5271 402.31 88.4997C402.755 87.4571 403.383 86.5677 404.196 85.8317C405.009 85.0957 405.959 84.5284 407.048 84.1297C408.137 83.7311 409.317 83.5317 410.59 83.5317C411.725 83.5317 412.744 83.6927 413.649 84.0147C414.554 84.3367 415.351 84.7891 416.041 85.3717C416.746 85.9391 417.352 86.5984 417.858 87.3497L414.408 89.1437C414.04 88.4997 413.542 87.9707 412.913 87.5567C412.3 87.1274 411.525 86.9127 410.59 86.9127C409.701 86.9127 408.88 87.1121 408.129 87.5107C407.393 87.9094 406.803 88.4844 406.358 89.2357C405.929 89.9717 405.714 90.8764 405.714 91.9497C405.714 93.0077 405.921 93.9277 406.335 94.7097C406.764 95.4764 407.339 96.0744 408.06 96.5037C408.796 96.9177 409.639 97.1247 410.59 97.1247C411.173 97.1247 411.702 97.0557 412.177 96.9177C412.652 96.7644 413.059 96.5574 413.396 96.2967C413.733 96.0207 414.017 95.7064 414.247 95.3537C414.492 94.9857 414.684 94.5947 414.822 94.1807H410.544Z" fill="white"/>
+<path d="M433.405 83.8997H437.154V100.805L426.022 90.9377V99.9997H422.296V83.0947L433.405 92.9617V83.8997Z" fill="white"/>
+<path d="M444.132 99.9997V96.8027H452.251V99.9997H444.132ZM444.132 87.0967V83.8997H452.251V87.0967H444.132ZM444.132 93.0997V89.9717H451.791V93.0997H444.132ZM441.556 83.8997H445.282V99.9997H441.556V83.8997Z" fill="white"/>
+<path d="M460.44 92.7087H464.465L469.502 99.9997H464.948L460.44 92.7087ZM456.415 83.8997H460.302V99.9997H456.415V83.8997ZM458.853 87.1887V83.8997H462.28C463.66 83.8997 464.81 84.1221 465.73 84.5667C466.65 85.0114 467.347 85.6324 467.823 86.4297C468.298 87.2117 468.536 88.1241 468.536 89.1667C468.536 90.1941 468.298 91.1064 467.823 91.9037C467.347 92.6857 466.65 93.2991 465.73 93.7437C464.81 94.1884 463.66 94.4107 462.28 94.4107H458.853V91.3977H462.004C462.525 91.3977 462.97 91.3211 463.338 91.1677C463.721 90.9991 464.012 90.7614 464.212 90.4547C464.411 90.1327 464.511 89.7494 464.511 89.3047C464.511 88.8601 464.411 88.4844 464.212 88.1777C464.012 87.8557 463.721 87.6104 463.338 87.4417C462.97 87.2731 462.525 87.1887 462.004 87.1887H458.853Z" fill="white"/>
+<path d="M143.938 48.998L156.307 14.5H168.579L181.146 48.998H169.614L162.517 25.6872H162.32L155.223 48.998H143.938ZM155.174 44.1682V36.1351H169.762V44.1682H155.174Z" fill="white"/>
+<path d="M193.524 49.4415C192.177 49.4415 190.797 49.3101 189.384 49.0472C188.004 48.8173 186.493 48.4394 184.85 47.9137L182.879 47.2731L185.047 38.6979L188.201 39.0921C189.121 39.2235 189.975 39.3057 190.764 39.3385C191.552 39.3385 192.308 39.3385 193.031 39.3385C194.345 39.3385 195.364 39.0264 196.086 38.4022C196.809 37.7779 197.171 36.9565 197.171 35.938V14.5H208.161V35.9873C208.161 40.357 206.863 43.6918 204.267 45.9917C201.705 48.2916 198.123 49.4415 193.524 49.4415Z" fill="white"/>
+<path d="M208.717 48.998L221.087 14.5H233.359L245.926 48.998H234.394L227.297 25.6872H227.1L220.003 48.998H208.717ZM219.954 44.1682V36.1351H234.542V44.1682H219.954Z" fill="white"/>
+<path d="M255.403 48.998V39.0428L241.456 14.5H253.974L260.873 28.792H261.07L268.019 14.5H280.044L266.393 38.6486V48.998H255.403Z" fill="white"/>
+<path d="M308.453 49.4415C307.106 49.4415 305.726 49.3101 304.313 49.0472C302.933 48.8173 301.422 48.4394 299.779 47.9137L297.808 47.2731L299.976 38.6979L303.13 39.0921C304.05 39.2235 304.904 39.3057 305.693 39.3385C306.481 39.3385 307.237 39.3385 307.96 39.3385C309.274 39.3385 310.293 39.0264 311.015 38.4022C311.738 37.7779 312.1 36.9565 312.1 35.938V14.5H323.09V35.9873C323.09 40.357 321.792 43.6918 319.196 45.9917C316.634 48.2916 313.052 49.4415 308.453 49.4415Z" fill="white"/>
+<path d="M323.646 48.998L336.016 14.5H348.288L360.855 48.998H349.323L342.226 25.6872H342.029L334.932 48.998H323.646ZM334.883 44.1682V36.1351H349.471V44.1682H334.883Z" fill="white"/>
+<path d="M364.312 48.998V14.5H382.547C385.143 14.5 387.393 14.9764 389.299 15.9292C391.204 16.8491 392.666 18.1634 393.685 19.8718C394.736 21.5803 395.262 23.6009 395.262 25.9336C395.262 28.2006 394.802 30.0734 393.882 31.5518C392.962 33.0303 391.73 34.1967 390.186 35.0509C388.642 35.9052 386.917 36.513 385.011 36.8744C383.138 37.2358 381.249 37.4165 379.344 37.4165H375.302V48.998H364.312ZM385.11 48.998L378.506 36.7265L388.855 34.9031L397.184 48.998H385.11ZM375.302 30.0734H380.083C381.594 30.0734 382.695 29.8105 383.385 29.2848C384.108 28.7263 384.469 27.8885 384.469 26.7714C384.469 25.6215 384.124 24.8001 383.434 24.3073C382.744 23.8144 381.627 23.568 380.083 23.568H375.302V30.0734Z" fill="white"/>
+<path d="M409.412 48.998V39.0428L395.465 14.5H407.982L414.882 28.792H415.079L422.028 14.5H434.053L420.402 38.6486V48.998H409.412Z" fill="white"/>
+<path d="M429.576 48.998L441.945 14.5H454.217L466.784 48.998H455.252L448.155 25.6872H447.958L440.861 48.998H429.576ZM440.812 44.1682V36.1351H455.4V44.1682H440.812Z" fill="white"/>
+<path d="M470.242 48.998V14.5H481.232V39.3878H497.051V48.998H470.242Z" fill="white"/>
+      </svg></a>
+      <div class="footer-text"><a href="#">Designed & Built by Ajay Jaryal © 2025</a></div>
     </div>
   </div>
 </footer>
@@ -1931,10 +2292,19 @@ ${msg}
 ━━━━━━━━━━━━━━━━━━
 Sent via ajayjaryal.com`;
 
+  const waUrl = 'https://wa.me/917018403386?text=' + encodeURIComponent(waMsg);
+
   setTimeout(()=>{
     btn.style.display = 'none';
     document.getElementById('formSuccess').style.display = 'block';
-    window.open('https://wa.me/917018403386?text=' + encodeURIComponent(waMsg), '_blank');
+    // Use anchor click instead of window.open to avoid popup blockers on GitHub Pages
+    const a = document.createElement('a');
+    a.href = waUrl;
+    a.target = '_blank';
+    a.rel = 'noopener noreferrer';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
   }, 1400);
 }
 </script>

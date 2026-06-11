@@ -344,6 +344,7 @@ section { padding: 7rem 0; }
   border: 1px solid rgba(157,191,255,.22);
   background: rgba(64,80,255,.06);
   padding: .4rem 1rem;
+  border-radius: 8px;
   backdrop-filter: blur(8px);
 }
 .hero-tag .dot-pulse {
@@ -362,8 +363,7 @@ section { padding: 7rem 0; }
 
 /* Name with a stacked dramatic layout */
 .hero-name {
-  font-family: 'Syne', sans-serif;
-  font-size: clamp(3.4rem, 6.5vw, 5.4rem);
+  font-size: 65px;
   font-weight: 800;
   line-height: .92;
   letter-spacing: -.04em;
@@ -417,9 +417,12 @@ section { padding: 7rem 0; }
   color: var(--gray-light);
   line-height: 1.85;
   max-width: 460px;
-  margin-bottom: 0;
+  margin-bottom: 20px;
   opacity: 0;
   animation: fadeUp .85s .55s forwards;
+}
+.hero-card-wrap img {
+    border-radius: 25px;
 }
 .hero-desc strong { color: #fff; font-weight: 600; }
 
@@ -1355,7 +1358,7 @@ footer {
   .btn-primary, .btn-outline { width: 100%; justify-content: center; }
   .hero-socials { gap: .7rem; }
   .social-btn { width: 36px; height: 36px; }
-  .hero-tag { font-size: .7rem; padding: .3rem .8rem; }
+  .hero-tag { font-size: .7rem; padding: .3rem .8rem; border-radius: 8px; }
 
   /* Sections */
   section { padding: 3.5rem 0; }
@@ -1558,8 +1561,7 @@ footer {
         </div>
 
         <h1 class="hero-name">
-          <span class="ln1">Ajay</span>
-          <span class="ln2">Jaryal</span>
+          <span class="ln1">Ajay Jaryal</span>
         </h1>
 
         <div class="hero-role-line">
@@ -1570,21 +1572,6 @@ footer {
         <p class="hero-desc">
           Frontend Developer &amp; UI/UX Specialist crafting <strong>modern, responsive</strong> and high-performance web experiences with <strong>2.5+ years</strong> of industry expertise.
         </p>
-
-        <div class="hero-stats-row">
-          <div class="hstat">
-            <div class="hstat-num">2.5<span style="color:var(--blue);font-size:.8em">+</span></div>
-            <div class="hstat-lbl">Years Exp.</div>
-          </div>
-          <div class="hstat">
-            <div class="hstat-num">50<span style="color:var(--blue);font-size:.8em">+</span></div>
-            <div class="hstat-lbl">Projects</div>
-          </div>
-          <div class="hstat">
-            <div class="hstat-num">4</div>
-            <div class="hstat-lbl">Companies</div>
-          </div>
-        </div>
 
         <div class="hero-actions">
           <a href="#work" class="btn-primary"><i class="fa-solid fa-eye"></i> View My Work</a>
@@ -1601,52 +1588,9 @@ footer {
 
       <!-- RIGHT -->
       <div class="hero-card-wrap">
-        <div class="hero-profile-card">
-          <div class="hero-img-wrap">
-            <img src="hero-img.webp" alt="Ajay Jaryal" class="hero-photo"
-              onerror="this.style.display='none';this.nextElementSibling.style.display='none';this.parentElement.querySelector('.hero-img-fallback').style.display='flex'">
-            <div class="hero-img-glow"></div>
-            <div class="hero-img-fallback" style="display:none;position:absolute;inset:0;align-items:center;justify-content:center;">AJ</div>
-          </div>
-          <div class="profile-info-row">
-            <div class="profile-name-block">
-              <div class="pname">Ajay Jaryal</div>
-              <div class="prole">Frontend Developer &amp; UI/UX</div>
-            </div>
-            <div class="profile-status">
-              <span class="profile-status-dot"></span> Open to Work
-            </div>
-          </div>
-          <div class="profile-stats">
-            <div class="pstat">
-              <div class="pstat-val">2.5<sup>+</sup></div>
-              <div class="pstat-lbl">Yrs Exp</div>
-            </div>
-            <div class="pstat">
-              <div class="pstat-val">50<sup>+</sup></div>
-              <div class="pstat-lbl">Projects</div>
-            </div>
-            <div class="pstat">
-              <div class="pstat-val">4</div>
-              <div class="pstat-lbl">Companies</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="hero-tech-card">
-          <div class="hero-tech-label">Core Technologies</div>
-          <div class="hero-tech-pills">
-            <span class="tpill">HTML5</span>
-            <span class="tpill">CSS3</span>
-            <span class="tpill">JavaScript</span>
-            <span class="tpill">WordPress</span>
-            <span class="tpill">Bootstrap</span>
-            <span class="tpill">Figma</span>
-            <span class="tpill">jQuery</span>
-          </div>
-        </div>
+        <img src="./img/ajay-jaryal-dev-img.webp" alt="ajay" title="ajay">
       </div>
-
+      </div>  
     </div>
   </div>
 
@@ -2279,19 +2223,14 @@ function handleFormSubmit(){
 
   const waMsg =
 `👋 Hi Ajay!
-
 ━━━━━━━━━━━━━━━━━━
 👤 *Name:* ${name}
 📧 *Email:* ${email}
 🛠️ *Service Needed:* ${service || 'Not specified'}
 ━━━━━━━━━━━━━━━━━━
-
 💬 *Message:*
 ${msg}
-
 ━━━━━━━━━━━━━━━━━━
-Sent via ajayjaryal.com`;
-
   const waUrl = 'https://wa.me/917018403386?text=' + encodeURIComponent(waMsg);
 
   setTimeout(()=>{

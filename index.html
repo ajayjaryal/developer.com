@@ -2223,14 +2223,19 @@ function handleFormSubmit(){
 
   const waMsg =
 `👋 Hi Ajay!
+
 ━━━━━━━━━━━━━━━━━━
 👤 *Name:* ${name}
 📧 *Email:* ${email}
 🛠️ *Service Needed:* ${service || 'Not specified'}
 ━━━━━━━━━━━━━━━━━━
+
 💬 *Message:*
 ${msg}
+
 ━━━━━━━━━━━━━━━━━━
+Sent via ajayjaryal.com`;
+
   const waUrl = 'https://wa.me/917018403386?text=' + encodeURIComponent(waMsg);
 
   setTimeout(()=>{

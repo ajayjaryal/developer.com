@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Ajay Jaryal — Frontend Developer</title>
+<link rel="icon" type="image/png" href="favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400&family=Syne:wght@600;700;800&display=swap" rel="stylesheet">
@@ -1058,6 +1059,12 @@ section { padding: 7rem 0; }
   position: absolute; inset: 0;
   opacity: .6;
 }
+.proj-thumb-img {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+  object-position: top center;
+}
 .proj-thumb-icon {
   font-size: 3rem;
   color: rgba(255,255,255,.15);
@@ -1277,6 +1284,60 @@ footer {
 .reveal-d2 { transition-delay: .2s; }
 .reveal-d3 { transition-delay: .3s; }
 
+/* ── CONTACT MODAL POPUP ── */
+.modal-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(5,8,20,.85);
+  backdrop-filter: blur(8px);
+  z-index: 900;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  opacity: 0;
+  transition: opacity .25s;
+}
+.modal-overlay.open {
+  display: flex;
+  opacity: 1;
+}
+.modal-box {
+  position: relative;
+  width: 100%;
+  max-width: 560px;
+  max-height: 90vh;
+  overflow-y: auto;
+  background: var(--dark-2);
+  border: 1px solid var(--border-blue);
+  border-radius: 14px;
+  padding: 2.2rem 2.2rem 2rem;
+  box-shadow: 0 30px 80px rgba(0,0,0,.6);
+  transform: translateY(18px) scale(.97);
+  transition: transform .3s;
+}
+.modal-overlay.open .modal-box { transform: translateY(0) scale(1); }
+.modal-box::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  border-radius: 14px 14px 0 0;
+  background: linear-gradient(90deg, var(--blue), var(--blue-light));
+}
+.modal-close {
+  position: absolute;
+  top: 1rem; right: 1rem;
+  width: 34px; height: 34px;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--gray-light);
+  border-radius: 8px;
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1rem;
+  transition: border-color .2s, color .2s, background .2s;
+}
+.modal-close:hover { border-color: var(--border-blue); color: #fff; background: rgba(64,80,255,.1); }
+
 /* ── RESPONSIVE ── */
 @media(max-width:900px){
   .about-grid{grid-template-columns:1fr;gap:3rem;}
@@ -1346,6 +1407,8 @@ footer {
 
   /* Slider arrows */
   .slider-arrow { width: 36px; height: 36px; font-size: .8rem; }
+
+  .modal-box { padding: 1.8rem 1.4rem; }
 }
 
 /* ── MOBILE (max 480px) ── */
@@ -1579,7 +1642,7 @@ footer {
 
         <div class="hero-actions">
           <a href="#work" class="btn-primary"><i class="fa-solid fa-eye"></i> View My Work</a>
-          <a href="#contact" class="btn-outline"><i class="fa-solid fa-paper-plane"></i> Get in Touch</a>
+          <a href="javascript:void(0)" class="btn-outline" onclick="openContactModal()"><i class="fa-solid fa-paper-plane"></i> Get in Touch</a>
         </div>
 
         <div class="hero-socials">
@@ -1696,10 +1759,9 @@ footer {
 
       <div class="project-card visible" data-cat="html">
         <div class="proj-thumb">
-          <div class="proj-thumb-bg" style="background:linear-gradient(135deg,#0f172a,#1e3a5f)"></div>
-          <i class="fa-solid fa-laptop-code proj-thumb-icon"></i>
+          <img class="proj-thumb-img" src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=900&q=80" alt="Corporate Business Website">
           <div class="proj-overlay">
-            <a href="#" class="proj-link demo"><i class="fa-solid fa-arrow-up-right-from-square"></i> Live</a>
+            <a href="https://www.behance.net/ajay100" target="_blank" class="proj-link demo"><i class="fa-solid fa-arrow-up-right-from-square"></i> Live</a>
             <a href="#" class="proj-link code"><i class="fa-brands fa-github"></i> Code</a>
           </div>
         </div>
@@ -1712,10 +1774,9 @@ footer {
 
       <div class="project-card visible" data-cat="wordpress">
         <div class="proj-thumb">
-          <div class="proj-thumb-bg" style="background:linear-gradient(135deg,#0d2137,#1a4870)"></div>
-          <i class="fa-brands fa-wordpress proj-thumb-icon"></i>
+          <img class="proj-thumb-img" src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=900&q=80" alt="Real Estate Portal">
           <div class="proj-overlay">
-            <a href="#" class="proj-link demo"><i class="fa-solid fa-arrow-up-right-from-square"></i> Live</a>
+            <a href="https://www.behance.net/ajay100" target="_blank" class="proj-link demo"><i class="fa-solid fa-arrow-up-right-from-square"></i> Live</a>
             <a href="#" class="proj-link code"><i class="fa-brands fa-github"></i> Code</a>
           </div>
         </div>
@@ -1728,10 +1789,9 @@ footer {
 
       <div class="project-card visible" data-cat="ecommerce">
         <div class="proj-thumb">
-          <div class="proj-thumb-bg" style="background:linear-gradient(135deg,#1a0533,#3d1269)"></div>
-          <i class="fa-solid fa-bag-shopping proj-thumb-icon"></i>
+          <img class="proj-thumb-img" src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=900&q=80" alt="Fashion E-Commerce Store">
           <div class="proj-overlay">
-            <a href="#" class="proj-link demo"><i class="fa-solid fa-arrow-up-right-from-square"></i> Live</a>
+            <a href="https://www.behance.net/ajay100" target="_blank" class="proj-link demo"><i class="fa-solid fa-arrow-up-right-from-square"></i> Live</a>
             <a href="#" class="proj-link code"><i class="fa-brands fa-github"></i> Code</a>
           </div>
         </div>
@@ -1744,10 +1804,9 @@ footer {
 
       <div class="project-card visible" data-cat="ui">
         <div class="proj-thumb">
-          <div class="proj-thumb-bg" style="background:linear-gradient(135deg,#0a1628,#1a3566)"></div>
-          <i class="fa-brands fa-figma proj-thumb-icon"></i>
+          <img class="proj-thumb-img" src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=900&q=80" alt="SaaS Dashboard UI Design">
           <div class="proj-overlay">
-            <a href="#" class="proj-link demo"><i class="fa-solid fa-arrow-up-right-from-square"></i> Preview</a>
+            <a href="https://www.behance.net/ajay100" target="_blank" class="proj-link demo"><i class="fa-solid fa-arrow-up-right-from-square"></i> Preview</a>
             <a href="#" class="proj-link code"><i class="fa-solid fa-eye"></i> View</a>
           </div>
         </div>
@@ -1760,10 +1819,9 @@ footer {
 
       <div class="project-card visible" data-cat="html">
         <div class="proj-thumb">
-          <div class="proj-thumb-bg" style="background:linear-gradient(135deg,#071520,#0e3048)"></div>
-          <i class="fa-solid fa-utensils proj-thumb-icon"></i>
+          <img class="proj-thumb-img" src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=900&q=80" alt="Restaurant Landing Page">
           <div class="proj-overlay">
-            <a href="#" class="proj-link demo"><i class="fa-solid fa-arrow-up-right-from-square"></i> Live</a>
+            <a href="https://www.behance.net/ajay100" target="_blank" class="proj-link demo"><i class="fa-solid fa-arrow-up-right-from-square"></i> Live</a>
             <a href="#" class="proj-link code"><i class="fa-brands fa-github"></i> Code</a>
           </div>
         </div>
@@ -1776,10 +1834,9 @@ footer {
 
       <div class="project-card visible" data-cat="wordpress">
         <div class="proj-thumb">
-          <div class="proj-thumb-bg" style="background:linear-gradient(135deg,#0c2040,#1a4880)"></div>
-          <i class="fa-solid fa-graduation-cap proj-thumb-icon"></i>
+          <img class="proj-thumb-img" src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=900&q=80" alt="Online Education Platform">
           <div class="proj-overlay">
-            <a href="#" class="proj-link demo"><i class="fa-solid fa-arrow-up-right-from-square"></i> Live</a>
+            <a href="https://www.behance.net/ajay100" target="_blank" class="proj-link demo"><i class="fa-solid fa-arrow-up-right-from-square"></i> Live</a>
             <a href="#" class="proj-link code"><i class="fa-brands fa-github"></i> Code</a>
           </div>
         </div>
@@ -1962,11 +2019,11 @@ footer {
             </div>
             <i class="fa-solid fa-arrow-right" style="color:var(--blue-light);font-size:.75rem"></i>
           </a>
-          <a href="https://maps.google.com/?q=Chamba,Himachal Pradesh" target="_blank" class="cinfo-item">
+          <a href="https://maps.google.com/?q=Chandigarh, India" target="_blank" class="cinfo-item">
             <div class="cinfo-icon"><i class="fa-solid fa-location-dot"></i></div>
             <div class="cinfo-text">
               <div class="cinfo-label">Location</div>
-              <div class="cinfo-val">Chamba, Himachal Pradesh, India</div>
+              <div class="cinfo-val">Chandigarh, India</div>
             </div>
             <i class="fa-solid fa-arrow-right" style="color:var(--blue-light);font-size:.75rem"></i>
           </a>
@@ -2001,7 +2058,7 @@ footer {
           <label><i class="fa-solid fa-message"></i> Message</label>
           <textarea id="fmessage" rows="5" placeholder="Tell me about your project..."></textarea>
         </div>
-        <button class="btn-submit" onclick="handleFormSubmit()">
+        <button class="btn-submit" onclick="handleFormSubmit('', this)">
           <i class="fa-solid fa-paper-plane"></i> Send Message
         </button>
         <div class="form-success" id="formSuccess">
@@ -2012,6 +2069,47 @@ footer {
     </div>
   </div>
 </section>
+
+<!-- ═══ GET IN TOUCH — POPUP MODAL ═══ -->
+<div class="modal-overlay" id="contactModalOverlay">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeContactModal()" aria-label="Close"><i class="fa-solid fa-xmark"></i></button>
+    <div class="form-title"><i class="fa-solid fa-paper-plane" style="color:var(--blue-light);margin-right:.5rem"></i>Send Me a Message</div>
+    <div class="form-row">
+      <div class="form-group">
+        <label><i class="fa-solid fa-user"></i> Full Name</label>
+        <input type="text" id="mfname" placeholder="Your Name">
+      </div>
+      <div class="form-group">
+        <label><i class="fa-solid fa-envelope"></i> Email Address</label>
+        <input type="email" id="mfemail" placeholder="your@email.com">
+      </div>
+    </div>
+    <div class="form-group">
+      <label><i class="fa-solid fa-briefcase"></i> Service Needed</label>
+      <select id="mfservice">
+        <option value="" disabled selected>Select a service</option>
+        <option>Custom Website Development</option>
+        <option>WordPress Development</option>
+        <option>UI/UX Design</option>
+        <option>E-Commerce Store</option>
+        <option>Responsive Design Fix</option>
+        <option>Other</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label><i class="fa-solid fa-message"></i> Message</label>
+      <textarea id="mfmessage" rows="5" placeholder="Tell me about your project..."></textarea>
+    </div>
+    <button class="btn-submit" onclick="handleFormSubmit('m', this)">
+      <i class="fa-solid fa-paper-plane"></i> Send Message
+    </button>
+    <div class="form-success" id="mformSuccess">
+      <i class="fa-solid fa-circle-check" style="font-size:2rem;margin-bottom:.8rem;display:block"></i>
+      Thank you! Your message has been sent. I'll get back to you soon.
+    </div>
+  </div>
+</div>
 
 <!-- ═══ FOOTER ═══ -->
 <footer>
@@ -2209,19 +2307,38 @@ document.querySelectorAll('.nav-mob-link').forEach(link => {
   });
 });
 
-// Contact form — WhatsApp proper message
-function handleFormSubmit(){
-  const name    = document.getElementById('fname').value.trim();
-  const email   = document.getElementById('femail').value.trim();
-  const service = document.getElementById('fservice').value.trim();
-  const msg     = document.getElementById('fmessage').value.trim();
+// Get in Touch — Popup Modal
+const contactModalOverlay = document.getElementById('contactModalOverlay');
+function openContactModal(){
+  contactModalOverlay.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeContactModal(){
+  contactModalOverlay.classList.remove('open');
+  document.body.style.overflow = '';
+}
+contactModalOverlay.addEventListener('click', (e) => {
+  if (e.target === contactModalOverlay) closeContactModal();
+});
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') closeContactModal();
+});
+
+// Contact form — WhatsApp proper message (works for both main form & popup modal)
+// prefix: '' for main section form, 'm' for popup modal form
+function handleFormSubmit(prefix, btnEl){
+  prefix = prefix || '';
+  const name    = document.getElementById(prefix+'fname').value.trim();
+  const email   = document.getElementById(prefix+'femail').value.trim();
+  const service = document.getElementById(prefix+'fservice').value.trim();
+  const msg     = document.getElementById(prefix+'fmessage').value.trim();
 
   if(!name || !email || !msg){
     alert('Please fill in required fields: Name, Email, and Message.');
     return;
   }
 
-  const btn = document.querySelector('.btn-submit');
+  const btn = btnEl || (window.event && window.event.currentTarget);
   btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Sending...';
   btn.disabled = true;
 
@@ -2244,7 +2361,7 @@ Sent via ajayjaryal.com`;
 
   setTimeout(()=>{
     btn.style.display = 'none';
-    document.getElementById('formSuccess').style.display = 'block';
+    document.getElementById(prefix+'formSuccess').style.display = 'block';
     // Use anchor click instead of window.open to avoid popup blockers on GitHub Pages
     const a = document.createElement('a');
     a.href = waUrl;

@@ -1037,7 +1037,7 @@ section { padding: 7rem 0; }
   border-radius: 12px;
   overflow: hidden;
   transition: border-color .3s, transform .35s, box-shadow .35s;
-  flex: 0 0 620px;
+  flex: 0 0 520px;
   scroll-snap-align: start;
   display: flex;
   flex-direction: column;
@@ -1049,7 +1049,7 @@ section { padding: 7rem 0; }
   box-shadow: 0 20px 44px rgba(64,80,255,.14);
 }
 .proj-thumb {
-  height: 400px;
+  height: 300px;
   background: var(--dark);
   position: relative;
   overflow: hidden;
@@ -1354,6 +1354,9 @@ footer {
     position: relative;
     z-index: 2;
     width: 100%;
+}
+.proj-thumb {
+    height: 200px;
 }
   /* Cursor off on touch */
   .cursor-dot, .cursor-ring { display: none; }
@@ -1757,93 +1760,183 @@ footer {
       </div>
     <div class="projects-grid" id="projectsSlider">
 
+      <div class="project-card visible" data-cat="ecommerce">
+        <div class="proj-thumb">
+          <img class="proj-thumb-img" src="https://mir-s3-cdn-cf.behance.net/projects/404/17b64b252218483.Y3JvcCwxNDQwLDExMjYsMCww.jpg" alt="Baby Clothing Website">
+          <div class="proj-overlay">
+            <a href="https://www.behance.net/gallery/252218483/Baby-Clothing-Website" target="_blank" class="proj-link demo"><i class="fa-solid fa-arrow-up-right-from-square"></i> Live</a>
+            <a href="https://www.behance.net/gallery/252218483/Baby-Clothing-Website" target="_blank" class="proj-link code"><i class="fa-brands fa-behance"></i> Behance</a>
+          </div>
+        </div>
+        <div class="proj-body">
+          <div class="proj-tags"><span class="ptag">HTML5</span><span class="ptag">CSS3</span><span class="ptag">E-Commerce</span></div>
+          <div class="proj-title">Baby Clothing Website</div>
+          <p class="proj-desc">A soft, playful e-commerce design for a baby clothing brand with clean product layouts and an easy shopping flow.</p>
+        </div>
+      </div>
+
       <div class="project-card visible" data-cat="html">
         <div class="proj-thumb">
-          <img class="proj-thumb-img" src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=900&q=80" alt="Corporate Business Website">
+          <img class="proj-thumb-img" src="https://mir-s3-cdn-cf.behance.net/projects/404/dd0579252038767.Y3JvcCwxOTIwLDE1MDEsMCww.jpg" alt="Studios2 Website">
           <div class="proj-overlay">
-            <a href="https://www.behance.net/ajayjaryal" target="_blank" class="proj-link demo"><i class="fa-solid fa-arrow-up-right-from-square"></i> Live</a>
-            <a href="#" class="proj-link code"><i class="fa-brands fa-github"></i> Code</a>
+            <a href="https://www.behance.net/gallery/252038767/studios2-website" target="_blank" class="proj-link demo"><i class="fa-solid fa-arrow-up-right-from-square"></i> Live</a>
+            <a href="https://www.behance.net/gallery/252038767/studios2-website" target="_blank" class="proj-link code"><i class="fa-brands fa-behance"></i> Behance</a>
           </div>
         </div>
         <div class="proj-body">
           <div class="proj-tags"><span class="ptag">HTML5</span><span class="ptag">CSS3</span><span class="ptag">JavaScript</span></div>
-          <div class="proj-title">Corporate Business Website</div>
-          <p class="proj-desc">A fully responsive multi-page corporate website with smooth animations, contact forms, and modern UI design.</p>
+          <div class="proj-title">Studios2 Website</div>
+          <p class="proj-desc">A modern studio website design with bold visuals, smooth sections, and a strong focus on brand presentation.</p>
         </div>
       </div>
 
       <div class="project-card visible" data-cat="wordpress">
         <div class="proj-thumb">
-          <img class="proj-thumb-img" src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=900&q=80" alt="Real Estate Portal">
+          <img class="proj-thumb-img" src="https://mir-s3-cdn-cf.behance.net/projects/404/f6b4e1252038605.Y3JvcCwxOTIwLDE1MDEsMCww.jpg" alt="Optibiz Website">
           <div class="proj-overlay">
-            <a href="https://www.behance.net/ajayjaryal" target="_blank" class="proj-link demo"><i class="fa-solid fa-arrow-up-right-from-square"></i> Live</a>
-            <a href="#" class="proj-link code"><i class="fa-brands fa-github"></i> Code</a>
+            <a href="https://www.behance.net/gallery/252038605/optibiz-website" target="_blank" class="proj-link demo"><i class="fa-solid fa-arrow-up-right-from-square"></i> Live</a>
+            <a href="https://www.behance.net/gallery/252038605/optibiz-website" target="_blank" class="proj-link code"><i class="fa-brands fa-behance"></i> Behance</a>
           </div>
         </div>
         <div class="proj-body">
-          <div class="proj-tags"><span class="ptag">WordPress</span><span class="ptag">Elementor</span></div>
-          <div class="proj-title">Real Estate Portal</div>
-          <p class="proj-desc">Custom WordPress theme for a real estate company with property listings, search filters, and agent profiles.</p>
-        </div>
-      </div>
-
-      <div class="project-card visible" data-cat="ecommerce">
-        <div class="proj-thumb">
-          <img class="proj-thumb-img" src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=900&q=80" alt="Fashion E-Commerce Store">
-          <div class="proj-overlay">
-            <a href="https://www.behance.net/ajayjaryal" target="_blank" class="proj-link demo"><i class="fa-solid fa-arrow-up-right-from-square"></i> Live</a>
-            <a href="#" class="proj-link code"><i class="fa-brands fa-github"></i> Code</a>
-          </div>
-        </div>
-        <div class="proj-body">
-          <div class="proj-tags"><span class="ptag">WooCommerce</span><span class="ptag">WordPress</span></div>
-          <div class="proj-title">Fashion E-Commerce Store</div>
-          <p class="proj-desc">Full-featured WooCommerce store with custom product pages, cart, wishlist, and payment gateway integration.</p>
+          <div class="proj-tags"><span class="ptag">WordPress</span><span class="ptag">Business</span></div>
+          <div class="proj-title">Optibiz Website</div>
+          <p class="proj-desc">A professional business website design built for a corporate client, focused on clarity, trust, and conversions.</p>
         </div>
       </div>
 
       <div class="project-card visible" data-cat="ui">
         <div class="proj-thumb">
-          <img class="proj-thumb-img" src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=900&q=80" alt="SaaS Dashboard UI Design">
+          <img class="proj-thumb-img" src="https://mir-s3-cdn-cf.behance.net/projects/404/1b0cc3252218597.Y3JvcCwxNDg5LDExNjQsMCww.jpg" alt="The Gold Vault - Luxury Jewelry Logo Design">
           <div class="proj-overlay">
-            <a href="https://www.behance.net/ajayjaryal" target="_blank" class="proj-link demo"><i class="fa-solid fa-arrow-up-right-from-square"></i> Preview</a>
-            <a href="#" class="proj-link code"><i class="fa-solid fa-eye"></i> View</a>
+            <a href="https://www.behance.net/gallery/252218597/The-Gold-Vault-Luxury-Jewelry-Logo-Design" target="_blank" class="proj-link demo"><i class="fa-solid fa-arrow-up-right-from-square"></i> Preview</a>
+            <a href="https://www.behance.net/gallery/252218597/The-Gold-Vault-Luxury-Jewelry-Logo-Design" target="_blank" class="proj-link code"><i class="fa-brands fa-behance"></i> Behance</a>
           </div>
         </div>
         <div class="proj-body">
-          <div class="proj-tags"><span class="ptag">Figma</span><span class="ptag">UI/UX</span></div>
-          <div class="proj-title">SaaS Dashboard UI Design</div>
-          <p class="proj-desc">Clean analytics dashboard UI with dark mode, data visualization components, and intuitive navigation flow.</p>
+          <div class="proj-tags"><span class="ptag">Branding</span><span class="ptag">Logo Design</span></div>
+          <div class="proj-title">The Gold Vault – Luxury Jewelry Logo</div>
+          <p class="proj-desc">An elegant, premium logo identity crafted for a luxury jewelry brand, balancing sophistication with timeless appeal.</p>
         </div>
       </div>
 
       <div class="project-card visible" data-cat="html">
         <div class="proj-thumb">
-          <img class="proj-thumb-img" src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=900&q=80" alt="Restaurant Landing Page">
+          <img class="proj-thumb-img" src="https://mir-s3-cdn-cf.behance.net/projects/404/203249204504275.66aa14b83a9eb.png" alt="Pickleball Website">
           <div class="proj-overlay">
-            <a href="https://www.behance.net/ajayjaryal" target="_blank" class="proj-link demo"><i class="fa-solid fa-arrow-up-right-from-square"></i> Live</a>
-            <a href="#" class="proj-link code"><i class="fa-brands fa-github"></i> Code</a>
+            <a href="https://www.behance.net/gallery/204504275/pickleball-website" target="_blank" class="proj-link demo"><i class="fa-solid fa-arrow-up-right-from-square"></i> Live</a>
+            <a href="https://www.behance.net/gallery/204504275/pickleball-website" target="_blank" class="proj-link code"><i class="fa-brands fa-behance"></i> Behance</a>
           </div>
         </div>
         <div class="proj-body">
-          <div class="proj-tags"><span class="ptag">HTML5</span><span class="ptag">Bootstrap</span><span class="ptag">jQuery</span></div>
-          <div class="proj-title">Restaurant Landing Page</div>
-          <p class="proj-desc">Elegant restaurant website with online menu, reservation system, and image gallery with smooth parallax effects.</p>
+          <div class="proj-tags"><span class="ptag">HTML5</span><span class="ptag">Bootstrap</span><span class="ptag">JavaScript</span></div>
+          <div class="proj-title">Pickleball Website</div>
+          <p class="proj-desc">An energetic sports website design for a pickleball brand with dynamic layouts and a fun, engaging feel.</p>
         </div>
       </div>
 
       <div class="project-card visible" data-cat="wordpress">
         <div class="proj-thumb">
-          <img class="proj-thumb-img" src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=900&q=80" alt="Online Education Platform">
+          <img class="proj-thumb-img" src="https://mir-s3-cdn-cf.behance.net/projects/404/14de14204504343.66aa14eff2e5d.png" alt="Multiple Theme Website">
           <div class="proj-overlay">
-            <a href="https://www.behance.net/ajayjaryal" target="_blank" class="proj-link demo"><i class="fa-solid fa-arrow-up-right-from-square"></i> Live</a>
-            <a href="#" class="proj-link code"><i class="fa-brands fa-github"></i> Code</a>
+            <a href="https://www.behance.net/gallery/204504343/multiple-theme-website" target="_blank" class="proj-link demo"><i class="fa-solid fa-arrow-up-right-from-square"></i> Live</a>
+            <a href="https://www.behance.net/gallery/204504343/multiple-theme-website" target="_blank" class="proj-link code"><i class="fa-brands fa-behance"></i> Behance</a>
           </div>
         </div>
         <div class="proj-body">
-          <div class="proj-tags"><span class="ptag">WordPress</span><span class="ptag">LMS</span></div>
-          <div class="proj-title">Online Education Platform</div>
-          <p class="proj-desc">WordPress-based LMS website with course management, student portal, and integrated payment system for online learning.</p>
+          <div class="proj-tags"><span class="ptag">WordPress</span><span class="ptag">Multi-Theme</span></div>
+          <div class="proj-title">Multiple Theme Website</div>
+          <p class="proj-desc">A flexible WordPress build supporting multiple theme layouts, giving clients options to switch designs with ease.</p>
+        </div>
+      </div>
+
+      <div class="project-card visible" data-cat="ui">
+        <div class="proj-thumb">
+          <img class="proj-thumb-img" src="https://mir-s3-cdn-cf.behance.net/projects/404/4989db252010515.6a44c8ba9c1d3.png" alt="Ranking with AI">
+          <div class="proj-overlay">
+            <a href="https://www.behance.net/gallery/252010515/Ranking-with-AI" target="_blank" class="proj-link demo"><i class="fa-solid fa-arrow-up-right-from-square"></i> Preview</a>
+            <a href="https://www.behance.net/gallery/252010515/Ranking-with-AI" target="_blank" class="proj-link code"><i class="fa-brands fa-behance"></i> Behance</a>
+          </div>
+        </div>
+        <div class="proj-body">
+          <div class="proj-tags"><span class="ptag">UI/UX</span><span class="ptag">Concept</span></div>
+          <div class="proj-title">Ranking with AI</div>
+          <p class="proj-desc">A concept design exploring how AI-driven ranking and recommendation features can be presented in a clean, modern UI.</p>
+        </div>
+      </div>
+
+      <div class="project-card visible" data-cat="ui">
+        <div class="proj-thumb">
+          <img class="proj-thumb-img" src="https://mir-s3-cdn-cf.behance.net/projects/404/343a7a204504209.66aa1484afb43.png" alt="Wireframe Design">
+          <div class="proj-overlay">
+            <a href="https://www.behance.net/gallery/204504209/wairframe-design" target="_blank" class="proj-link demo"><i class="fa-solid fa-arrow-up-right-from-square"></i> Preview</a>
+            <a href="https://www.behance.net/gallery/204504209/wairframe-design" target="_blank" class="proj-link code"><i class="fa-brands fa-behance"></i> Behance</a>
+          </div>
+        </div>
+        <div class="proj-body">
+          <div class="proj-tags"><span class="ptag">Wireframe</span><span class="ptag">UI/UX</span></div>
+          <div class="proj-title">Wireframe Design</div>
+          <p class="proj-desc">Low-fidelity wireframe layouts mapping out structure and user flow before moving into full visual design.</p>
+        </div>
+      </div>
+
+      <div class="project-card visible" data-cat="ui">
+        <div class="proj-thumb">
+          <img class="proj-thumb-img" src="https://mir-s3-cdn-cf.behance.net/projects/404/5b5be0204504125.66aa143fe4b12.png" alt="Mega Menu Design 1">
+          <div class="proj-overlay">
+            <a href="https://www.behance.net/gallery/204504125/Mega-menu" target="_blank" class="proj-link demo"><i class="fa-solid fa-arrow-up-right-from-square"></i> Preview</a>
+            <a href="https://www.behance.net/gallery/204504125/Mega-menu" target="_blank" class="proj-link code"><i class="fa-brands fa-behance"></i> Behance</a>
+          </div>
+        </div>
+        <div class="proj-body">
+          <div class="proj-tags"><span class="ptag">UI/UX</span><span class="ptag">Navigation</span></div>
+          <div class="proj-title">Mega Menu Design</div>
+          <p class="proj-desc">A clean, organized mega menu navigation design built to help users browse large sites quickly and intuitively.</p>
+        </div>
+      </div>
+
+      <div class="project-card visible" data-cat="ui">
+        <div class="proj-thumb">
+          <img class="proj-thumb-img" src="https://mir-s3-cdn-cf.behance.net/projects/404/4cd353204504021.66aa1412bdef1.png" alt="Mega Menu Design 2">
+          <div class="proj-overlay">
+            <a href="https://www.behance.net/gallery/204504021/Mega-menu" target="_blank" class="proj-link demo"><i class="fa-solid fa-arrow-up-right-from-square"></i> Preview</a>
+            <a href="https://www.behance.net/gallery/204504021/Mega-menu" target="_blank" class="proj-link code"><i class="fa-brands fa-behance"></i> Behance</a>
+          </div>
+        </div>
+        <div class="proj-body">
+          <div class="proj-tags"><span class="ptag">UI/UX</span><span class="ptag">Navigation</span></div>
+          <div class="proj-title">Mega Menu Design – V2</div>
+          <p class="proj-desc">An alternate mega menu concept with refined spacing and category grouping for a smoother browsing experience.</p>
+        </div>
+      </div>
+
+      <div class="project-card visible" data-cat="html">
+        <div class="proj-thumb">
+          <img class="proj-thumb-img" src="https://mir-s3-cdn-cf.behance.net/projects/404/01f430204489881.66a9e369691a0.png" alt="Website Design">
+          <div class="proj-overlay">
+            <a href="https://www.behance.net/gallery/204489881/website" target="_blank" class="proj-link demo"><i class="fa-solid fa-arrow-up-right-from-square"></i> Live</a>
+            <a href="https://www.behance.net/gallery/204489881/website" target="_blank" class="proj-link code"><i class="fa-brands fa-behance"></i> Behance</a>
+          </div>
+        </div>
+        <div class="proj-body">
+          <div class="proj-tags"><span class="ptag">HTML5</span><span class="ptag">CSS3</span></div>
+          <div class="proj-title">Website Design</div>
+          <p class="proj-desc">A clean, modern website layout focused on strong visual hierarchy and a smooth browsing experience.</p>
+        </div>
+      </div>
+
+      <div class="project-card visible" data-cat="html">
+        <div class="proj-thumb">
+          <img class="proj-thumb-img" src="https://mir-s3-cdn-cf.behance.net/projects/404/dd7e98204489831.66a9e337600b7.png" alt="Bands Website">
+          <div class="proj-overlay">
+            <a href="https://www.behance.net/gallery/204489831/bands-website" target="_blank" class="proj-link demo"><i class="fa-solid fa-arrow-up-right-from-square"></i> Live</a>
+            <a href="https://www.behance.net/gallery/204489831/bands-website" target="_blank" class="proj-link code"><i class="fa-brands fa-behance"></i> Behance</a>
+          </div>
+        </div>
+        <div class="proj-body">
+          <div class="proj-tags"><span class="ptag">HTML5</span><span class="ptag">CSS3</span><span class="ptag">JavaScript</span></div>
+          <div class="proj-title">Bands Website</div>
+          <p class="proj-desc">A bold, music-themed website design for a band, built with striking visuals and an immersive dark aesthetic.</p>
         </div>
       </div>
 
